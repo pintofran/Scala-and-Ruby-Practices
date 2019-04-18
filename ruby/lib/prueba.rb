@@ -27,8 +27,9 @@ class MiClase < Contrato
       self.define_method(name) do |*arg|
 
         @@antes.call
-        old_method.bind(self).call
+        var = old_method.bind(self).call
         @@despues.call
+        return var
 
       end
       @new_method = true
@@ -45,11 +46,10 @@ class MiClase < Contrato
     return 3
   end
 
-  end
+end
 
-MiClase.new.mensaje_1
-MiClase.new.mensaje_2
-MiClase.instance_methods(false)
+var = MiClase.new.mensaje_3
+pp var
 
 #MiClase.new.mensaje_2
 # Retorna 3 e imprime:
