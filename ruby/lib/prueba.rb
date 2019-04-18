@@ -1,8 +1,8 @@
 class Contrato
-  attr_accessor :antes
 
-  def self.before_and_after_each_call(param1,param2)
-    self.antes= 'hola'
+  def self.before_and_after_each_call(antes,dps)
+    @@antes = antes
+    @@despues = dps
   end
 
 end
@@ -26,9 +26,9 @@ class MiClase < Contrato
 
       self.define_method(name) do |*arg|
 
-        pp self.antes
+        @@antes.call
         old_method.bind(self).call
-
+        @@despues.call
 
       end
       @new_method = true
