@@ -74,9 +74,21 @@ class MiClase2 < Contrato
       proc{ puts 'Seee' }
   )
 
+  before_and_after_each_call(
+      # Bloque Before. Se ejecuta antes de cada mensaje
+      proc{ puts 'Una vez masss' },
+      # Bloque After. Se ejecuta después de cada mensaje
+      proc{ puts 'Daleeeeeeee' }
+  )
+
   def mensaje_1
     puts 'Segunda prueba'
     return 3
+  end
+
+  def mensaje_2
+    puts 'Tercera prueba'
+    return 10
   end
 
 end
@@ -84,6 +96,8 @@ end
 pp MiClase.new.mensaje_1
 
 pp MiClase2.new.mensaje_1
+
+pp MiClase2.new.mensaje_2
 
 
 #MiClase.new.mensaje_2
