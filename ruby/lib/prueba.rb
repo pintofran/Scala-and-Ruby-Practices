@@ -2,16 +2,21 @@ class Contrato
 
   @@antes = []
   @@despues = []
+  @@invariantes = []
 
   def self.before_and_after_each_call(antes,dps)
     @@antes.push([antes,self])
     @@despues.push([dps,self])
   end
 
+  def self.invariant(&bloque)
+    @@invariantes.push([bloque,self])
+  end
+
   @@new_method = true
 
   def self.method_added(name)
-    if @@new_method
+    if (@@new_method && name != 'initialize'.to_sym && name != 'instance_eval'.to_sym)
       @@new_method = false
 
       old_method= self.instance_method(name)
@@ -25,7 +30,9 @@ class Contrato
           end
 
         }
-        var = old_method.bind(self).call
+
+        var = old_method.bind(self).call(*arg)
+
         @@despues.each { |tuplaProc|
 
           if(tuplaProc[1] == self.class)
@@ -33,6 +40,17 @@ class Contrato
           end
 
         }
+
+        @@invariantes.each { |tuplaProc|
+
+          if(tuplaProc[1] == self.class)
+
+           self.instance_eval(&tuplaProc[0])
+
+          end
+
+        }
+
         return var
 
       end
@@ -88,16 +106,16 @@ class MiClase2 < Contrato
 
   def mensaje_2
     puts 'Tercera prueba'
-    return 10
   end
 
 end
 
-pp MiClase.new.mensaje_1
+#pp MiClase.new.mensaje_1
 
-pp MiClase2.new.mensaje_1
+#pp MiClase2.new.mensaje_1
 
-pp MiClase2.new.mensaje_2
+#pp MiClase2.new.mensaje_2
+
 
 
 #MiClase.new.mensaje_2
