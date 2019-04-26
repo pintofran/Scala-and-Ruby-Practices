@@ -14,7 +14,7 @@ class Contrato
     if @@new_method
       @@new_method = false
 
-      old_methodç = self.instance_method(name)
+      old_method= self.instance_method(name)
 
       self.define_method(name) do |*arg|
 
