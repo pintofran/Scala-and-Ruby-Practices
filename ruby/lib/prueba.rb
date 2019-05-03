@@ -1,48 +1,39 @@
-class Contrato
+class Class
 
-  @@antes = []
-  @@despues = []
+  @initialized = false
+  @new_method = true
 
-  def self.before_and_after_each_call(antes,dps)
-    @@antes.push([antes,self])
-    @@despues.push([dps,self])
+  def initialize
+    @antes = Array.new
+    @despues = Array.new
   end
 
-  @@new_method = true
+  def before_and_after_each_call(antes,dps)
+    if !@initialized
+      initialize
+      @initialized = true
+    end
+    @antes << antes
+    @despues << dps
+    pp @antes
+  end
 
-  def self.method_added(name)
-    if @@new_method
-      @@new_method = false
+  def method_added(name)
+    if @new_method
+      @new_method = false
+      pp name
+      pp self
 
-      old_method= self.instance_method(name)
+      old_method= instance_method(name)
 
-      self.define_method(name) do |*arg|
 
-        @@antes.each { |tuplaProc|
-
-          if(tuplaProc[1] == self.class)
-            tuplaProc[0].call
-          end
-
-        }
-        var = old_method.bind(self).call
-        @@despues.each { |tuplaProc|
-
-          if(tuplaProc[1] == self.class)
-            tuplaProc[0].call
-          end
-
-        }
-        return var
-
-      end
-      @@new_method = true
+      @new_method = true
     end
   end
 
 end
 
-class MiClase < Contrato
+class MiClase
 
   before_and_after_each_call(
       # Bloque Before. Se ejecuta antes de cada mensaje
@@ -56,9 +47,13 @@ class MiClase < Contrato
     return 5
   end
 
+
+  def self.mensaje_9
+    puts 'pise el mensaje'
+  end
 end
 
-class MiClase2 < Contrato
+class MiClase2
 
   before_and_after_each_call(
       # Bloque Before. Se ejecuta antes de cada mensaje
@@ -99,6 +94,7 @@ pp MiClase2.new.mensaje_1
 
 pp MiClase2.new.mensaje_2
 
+pp MiClase.new.class.mensaje_9
 
 #MiClase.new.mensaje_2
 # Retorna 3 e imprime:
