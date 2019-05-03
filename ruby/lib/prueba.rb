@@ -1,107 +1,130 @@
-class Contrato
+class Module
 
-  @@antes = []
-  @@despues = []
+  attr_accessor :antes, :despues, :preCond, :postCond, :esContrato, :ejecutar
 
-  def self.before_and_after_each_call(antes,dps)
-    @@antes.push([antes,self])
-    @@despues.push([dps,self])
+  def init
+    @esContrato = true
+    @new_method = true
+    @ejecutar = true
   end
 
-  @@new_method = true
 
-  def self.method_added(name)
-    if @@new_method
-      @@new_method = false
+  def before_and_after_each_call(antesNuevo, dpsNuevo)
+    init
 
-      old_method= self.instance_method(name)
+    self.antes = pushPiola(self.antes, antesNuevo)
+    self.despues = pushPiola(self.despues, dpsNuevo)
 
-      self.define_method(name) do |*arg|
+  end
 
-        @@antes.each { |tuplaProc|
+  def invariant(&bloque)
+    init
 
-          if(tuplaProc[1] == self.class)
-            tuplaProc[0].call
-          end
+    bloqueNuevo = proc {
 
-        }
-        var = old_method.bind(self).call
-        @@despues.each { |tuplaProc|
-
-          if(tuplaProc[1] == self.class)
-            tuplaProc[0].call
-          end
-
-        }
-        return var
-
+      if (!self.instance_eval(&bloque))
+        raise "Error de consistencia de la clase"
       end
-      @@new_method = true
+
+    }
+
+    self.despues = pushPiola(self.despues, bloqueNuevo)
+
+  end
+
+  def pre(&bloque)
+    @preCond = bloque
+  end
+
+  def post(&bloque)
+    @postCond = bloque
+  end
+
+  def method_added(name)
+    if (@esContrato)
+
+      if (@new_method && name != 'initialize'.to_sym)
+        @new_method = false
+
+        old_method = instance_method(name)
+
+        preProc=@preCond
+        if (preProc.nil?)
+          preProc = proc {true}
+        end
+
+        postProc=@postCond
+        if (postProc.nil?)
+          postProc = proc { |*args| true}
+        end
+
+        define_method(name) do |*arg|
+
+          if (self.class.ejecutar)
+
+              self.class.ejecutar = false
+
+              if (!self.instance_eval(&preProc))
+                raise "Error de pre condicion"
+              end
+              self.class.ejecutar = true
+
+          end
+
+          self.class.antes.each {|proc|
+
+            if (self.class.ejecutar)
+              self.class.ejecutar = false
+              self.instance_eval(&proc)
+              self.class.ejecutar = true
+            end
+
+          }
+
+          var = old_method.bind(self).call(*arg)
+
+
+          self.class.despues.each {|proc|
+
+            if (self.class.ejecutar)
+              self.class.ejecutar = false
+              self.instance_eval(&proc)
+              self.class.ejecutar = true
+            end
+
+          }
+
+          if (self.class.ejecutar)
+
+              self.class.ejecutar = false
+
+              if (!self.instance_exec(var,&postProc))
+                raise "Error de post condicion"
+              end
+
+              self.class.ejecutar = true
+
+          end
+
+          return var
+
+        end
+
+        @preCond = nil
+        @postCond = nil
+
+        @new_method = true
+      end
+
     end
   end
 
-end
-
-class MiClase < Contrato
-
-  before_and_after_each_call(
-      # Bloque Before. Se ejecuta antes de cada mensaje
-      proc{ puts 'Primero aca' },
-      # Bloque After. Se ejecuta después de cada mensaje
-      proc{ puts 'Dps aca' }
-  )
-
-  def mensaje_1
-    puts 'Primer prueba'
-    return 5
+  def pushPiola(lista, elemento)
+    if (lista.nil?)
+      lista = []
+    end
+    return lista.push(elemento)
   end
 
-end
-
-class MiClase2 < Contrato
-
-  before_and_after_each_call(
-      # Bloque Before. Se ejecuta antes de cada mensaje
-      proc{ puts 'Aca otra cosa' },
-      # Bloque After. Se ejecuta después de cada mensaje
-      proc{ puts 'Wiiii' }
-  )
-
-  before_and_after_each_call(
-      # Bloque Before. Se ejecuta antes de cada mensaje
-      proc{ puts 'Re loco' },
-      # Bloque After. Se ejecuta después de cada mensaje
-      proc{ puts 'Seee' }
-  )
-
-  before_and_after_each_call(
-      # Bloque Before. Se ejecuta antes de cada mensaje
-      proc{ puts 'Una vez masss' },
-      # Bloque After. Se ejecuta después de cada mensaje
-      proc{ puts 'Daleeeeeeee' }
-  )
-
-  def mensaje_1
-    puts 'Segunda prueba'
-    return 3
-  end
-
-  def mensaje_2
-    puts 'Tercera prueba'
-    return 10
-  end
 
 end
-
-pp MiClase.new.mensaje_1
-
-pp MiClase2.new.mensaje_1
-
-pp MiClase2.new.mensaje_2
-
-
-#MiClase.new.mensaje_2
-# Retorna 3 e imprime:
-# Entré a un mensaje
-# mensaje_2
-# Salí de un mensaje
