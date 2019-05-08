@@ -1,4 +1,4 @@
-load 'prueba.rb'
+require_relative  'prueba.rb'
 
 class Guerrero
 
@@ -26,13 +26,14 @@ class Guerrero
   pre { vida > 50 }
   post { |result| result == 5 }
   def mensaje
-     puts 'Mensaje'
+     puts 'Mensaje1'
      return 5
   end
 
+
   post { |result| result == 5 }
   def mensaje3
-    puts 'Mensaje'
+    puts 'Mensaje3'
     return 5
   end
 
@@ -44,12 +45,12 @@ class GuerreroDos
       # Bloque Before. Se ejecuta antes de cada mensaje
       proc{ puts 'Otro guerrero' },
       # Bloque After. Se ejecuta después de cada mensaje
-      proc{ puts 'Dps de otro guerrero' }
+      proc{ puts 'Mi fuerza es: ' + fuerza.to_s }
   )
 
   attr_accessor :vida, :fuerza
 
-  invariant { vida > 70 }
+  invariant { vida > 30 }
   invariant { fuerza > 20 }
 
   def initialize(vida)
@@ -57,19 +58,26 @@ class GuerreroDos
     @fuerza = 21
   end
 
+
   def atacar(otro)
+
     otro.vida -= fuerza
   end
 
-  pre { vida > 30 }
-  post { vida > 30 }
+  pre { vida > 20 }
+  post { vida > 70 }
   def mensaje
+    vida= 5
     puts 'Mensaje'
-    @vida= vida-20
     return 5
   end
 
-  post { |result| result == 5 }
+  def romper
+    @vida = 0
+  end
+
+  pre { vida == 51 }
+  post { vida == 51 }
   def mensaje3
     puts 'Mensaje'
     return 5
@@ -77,10 +85,5 @@ class GuerreroDos
 
 end
 
-guer = Guerrero.new(52)
+guer = GuerreroDos.new(80)
 guer.mensaje
-guer.mensaje3
-
-guer2 = GuerreroDos.new(60)
-guer2.mensaje
-guer2.mensaje
