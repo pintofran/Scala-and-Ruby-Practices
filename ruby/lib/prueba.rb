@@ -1,130 +1,155 @@
 class Module
 
-  attr_accessor :antes, :despues, :preCond, :postCond, :esContrato, :ejecutar
+  attr_accessor :bloques_before, :bloques_after, :invariants, :pre_condicion, :post_condicion, :es_ejecucion_normal
 
   def init
-    @esContrato = true
+    if @bloques_before.nil?
+      @bloques_before = BloquesEjecutables.new
+    end
+    if @bloques_after.nil?
+      @bloques_after = BloquesEjecutables.new
+    end
+    if @invariants.nil?
+      @invariants = BloquesEjecutables.new
+    end
     @new_method = true
-    @ejecutar = true
+    @es_ejecucion_normal = true
   end
 
-
-  def before_and_after_each_call(antesNuevo, dpsNuevo)
+  def before_and_after_each_call(antes_nuevo, despues_nuevo)
     init
-
-    self.antes = pushPiola(self.antes, antesNuevo)
-    self.despues = pushPiola(self.despues, dpsNuevo)
-
+    @bloques_before.agregar_bloque(antes_nuevo)
+    @bloques_after.agregar_bloque(despues_nuevo)
   end
 
   def invariant(&bloque)
     init
-
-    bloqueNuevo = proc {
-
-      if (!self.instance_eval(&bloque))
-        raise "Error de consistencia de la clase"
-      end
-
-    }
-
-    self.despues = pushPiola(self.despues, bloqueNuevo)
-
+    @invariants.agregar_bloque_condicion(&bloque)
   end
 
   def pre(&bloque)
-    @preCond = bloque
+    proc_nuevo = proc { |*var|
+      unless self.instance_exec(*var, &bloque)
+        raise "Error de pre condicion"
+      end
+    }
+    @pre_condicion = proc_nuevo
   end
 
   def post(&bloque)
-    @postCond = bloque
+    proc_nuevo = proc { |*var|
+      unless self.instance_exec(*var, &bloque)
+        pp self
+        raise "Error de post condicion"
+      end
+    }
+    @post_condicion = proc_nuevo
+  end
+
+  def ejecutarSinLoop(this,var,&proc)
+    if this.class.es_ejecucion_normal
+      this.class.es_ejecucion_normal = false
+      this.instance_exec(var,&proc)
+      this.class.es_ejecucion_normal = true
+    end
   end
 
   def method_added(name)
-    if (@esContrato)
 
-      if (@new_method && name != 'initialize'.to_sym)
+    pre_proc=@pre_condicion
+    if pre_proc.nil?
+      pre_proc = proc {true}
+    end
+
+    post_proc=@post_condicion
+    if post_proc.nil?
+      post_proc = proc { |*args| true}
+    end
+
+      if @new_method && name != 'initialize'.to_sym
         @new_method = false
 
         old_method = instance_method(name)
 
-        preProc=@preCond
-        if (preProc.nil?)
-          preProc = proc {true}
-        end
-
-        postProc=@postCond
-        if (postProc.nil?)
-          postProc = proc { |*args| true}
-        end
-
+        #Sobreescribimos el metodo
         define_method(name) do |*arg|
 
-          if (self.class.ejecutar)
+          self.class.ejecutarSinLoop(self,nil,&pre_proc)
 
-              self.class.ejecutar = false
-
-              if (!self.instance_eval(&preProc))
-                raise "Error de pre condicion"
-              end
-              self.class.ejecutar = true
-
-          end
-
-          self.class.antes.each {|proc|
-
-            if (self.class.ejecutar)
-              self.class.ejecutar = false
-              self.instance_eval(&proc)
-              self.class.ejecutar = true
-            end
-
-          }
+          self.class.bloques_before.ejecutar(self)
 
           var = old_method.bind(self).call(*arg)
 
+          self.class.invariants.ejecutar(self)
 
-          self.class.despues.each {|proc|
+          self.class.bloques_after.ejecutar(self)
 
-            if (self.class.ejecutar)
-              self.class.ejecutar = false
-              self.instance_eval(&proc)
-              self.class.ejecutar = true
-            end
+          self.class.ejecutarSinLoop(self,var,&post_proc)
 
-          }
-
-          if (self.class.ejecutar)
-
-              self.class.ejecutar = false
-
-              if (!self.instance_exec(var,&postProc))
-                raise "Error de post condicion"
-              end
-
-              self.class.ejecutar = true
-
-          end
 
           return var
 
         end
 
-        @preCond = nil
-        @postCond = nil
-
+        @pre_condicion = nil
+        @post_condicion = nil
         @new_method = true
+
+      else
+        if @new_method && name == 'initialize'.to_sym
+             @new_method = false
+
+             old_method = instance_method(name)
+
+             define_method(name) do |*arg|
+
+               self.class.ejecutarSinLoop(self,nil,&pre_proc)
+
+               var = old_method.bind(self).call(*arg)
+
+               self.class.invariants.ejecutar(self)
+               self.class.ejecutarSinLoop(self,var,&post_proc)
+
+               return var
+
+             end
+             @pre_condicion = nil
+             @post_condicion = nil
+              @new_method = true
+           end
       end
+  end
+end
 
-    end
+class BloquesEjecutables
+  attr_accessor :bloques
+
+  def initialize
+    @bloques = []
   end
 
-  def pushPiola(lista, elemento)
-    if (lista.nil?)
-      lista = []
-    end
-    return lista.push(elemento)
+  def agregar_bloque(nuevo_bloque)
+
+    @bloques.push(nuevo_bloque)
+
   end
 
+  def agregar_bloque_condicion(&bloque)
 
+    proc_modificado = proc {
+      unless self.instance_eval(&bloque)
+        raise "Error de consistencia de la clase"
+      end
+    }
+    @bloques.push(proc_modificado)
+
+  end
+
+  def ejecutar(this)
+
+    @bloques.each {|proc|
+      this.class.ejecutarSinLoop(this,nil,&proc)
+    }
+
+  end
 end
