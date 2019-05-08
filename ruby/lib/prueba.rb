@@ -1,9 +1,8 @@
 class Module
 
-  attr_accessor :antes, :despues, :preCond, :postCond, :esContrato, :ejecutar
+  attr_accessor :antes, :despues, :invariants, :preCond, :postCond, :ejecutar
 
   def init
-    @esContrato = true
     @new_method = true
     @ejecutar = true
   end
@@ -28,7 +27,7 @@ class Module
 
     }
 
-    self.despues = pushPiola(self.despues, bloqueNuevo)
+    self.invariants = pushPiola(self.invariants, bloqueNuevo)
 
   end
 
@@ -41,7 +40,6 @@ class Module
   end
 
   def method_added(name)
-    if (@esContrato)
 
       if (@new_method && name != 'initialize'.to_sym)
         @new_method = false
@@ -83,6 +81,15 @@ class Module
 
           var = old_method.bind(self).call(*arg)
 
+          self.class.invariants.each {|proc|
+
+            if (self.class.ejecutar)
+              self.class.ejecutar = false
+              self.instance_eval(&proc)
+              self.class.ejecutar = true
+            end
+
+          }
 
           self.class.despues.each {|proc|
 
@@ -114,9 +121,33 @@ class Module
         @postCond = nil
 
         @new_method = true
-      end
+      else
+        if (@new_method && name == 'initialize'.to_sym)
+             @new_method = false
 
-    end
+             old_method = instance_method(name)
+
+             define_method(name) do |*arg|
+
+               var = old_method.bind(self).call(*arg)
+
+
+               self.class.invariants.each {|proc|
+
+                 if (self.class.ejecutar)
+                   self.class.ejecutar = false
+                   self.instance_eval(&proc)
+                   self.class.ejecutar = true
+                 end
+
+               }
+
+               return var
+
+             end
+              @new_method = true
+           end
+      end
   end
 
   def pushPiola(lista, elemento)
