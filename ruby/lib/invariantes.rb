@@ -37,6 +37,16 @@ class Guerrero
     return 5
   end
 
+  post { |result| result == 5 }
+  def romper_por_post
+    return 4
+  end
+
+  pre { |result| result == 5 }
+  def romper_por_pre
+    return 4
+  end
+
 end
 
 class GuerreroDos
