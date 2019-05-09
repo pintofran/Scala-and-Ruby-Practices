@@ -44,19 +44,24 @@ describe "before_and_after_each_call" do
           to raise_error('Error de consistencia de la clase')
     end
 
-    it "La Pila debería ejecutar el proc 'before' cuando se llama a un metodo" do
-      pila = Pila.new(3)
-      pila.push(1)
+    it "La Pila debería ejecutar el proc 'after'" do
+     pila = Pila.new(3)
+     pila.push(1)
+
       expect { raise StandardError, 'Error de pre condicion'}.
-          to_not raise_error('Error de Error de pre condicion')
+        to_not raise_error( '#<StandardError: Error de pre condicion>')
     end
 
-    it "La Pila debería ejecutar el proc 'after' cuando se llama a un metodo" do
-      pila = Pila.new(3)
-      pila.push(1)
-      expect { raise StandardError, 'Error de post condicion'}.
-          to_not raise_error('Error de Error de post condicion')
-    end
+   it "La Pila debería lanzar una excepcion al intentar agregar un elemento nil" do
+     pila = Pila.new(3)
+     pila.push(nil)
+
+     expect { raise StandardError, 'Error de post condicion'}.
+          to raise_error('Error de post condicion')
+   end
+
+
+
 
 
 

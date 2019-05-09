@@ -7,20 +7,20 @@ class Pila
 
   post { empty? }
   def initialize(capacity)
-    capacity = capacity
-    current_node = nil
+    self.capacity = capacity
+    self.current_node = nil
   end
 
   pre { !full? }
   post { height > 0 }
   def push(element)
-    current_node = Node.new(element, current_node)
+    self.current_node = Node.new(element, current_node)
   end
 
   pre { !empty? }
   def pop
     element = top
-    current_node = @current_node.next_node
+   self.current_node = @current_node.next_node
     element
   end
 
@@ -38,7 +38,7 @@ class Pila
   end
 
   def full?
-    height == capacity
+    height == self.capacity
   end
 
   Node = Struct.new(:element, :next_node) do
@@ -48,10 +48,10 @@ class Pila
   end
 end
 
-#pila = Pila.new(3)
-#pila.push(1)
-#pila.push(2)
-#pila.push(3)
-#puts pila.pop
-#puts pila.pop
-#puts pila.pop
+pila = Pila.new(3)
+pila.push(1)
+pila.push(2)
+pila.push(3)
+puts pila.pop
+puts pila.pop
+puts pila.pop
