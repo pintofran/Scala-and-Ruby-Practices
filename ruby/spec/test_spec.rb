@@ -39,26 +39,41 @@ describe "before_and_after_each_call" do
     end
 
     it "Debería tirar una excepción por la invariante" do
-      guerrero = Guerrero.new(60)
-      expect { raise StandardError, 'Error de consistencia de la clase'}.
+
+      expect { Pila.new(-1)}.
           to raise_error('Error de consistencia de la clase')
     end
 
-    it "La Pila debería ejecutar el proc 'after'" do
+    it "La Pila debería poder pushear un elemento" do
      pila = Pila.new(3)
-     pila.push(1)
 
-      expect { raise StandardError, 'Error de pre condicion'}.
-        to_not raise_error( '#<StandardError: Error de pre condicion>')
+      expect { pila.push(1)}.
+        to_not raise_error
     end
 
-   it "La Pila debería lanzar una excepcion al intentar agregar un elemento nil" do
-     pila = Pila.new(3)
-     pila.push(nil)
+    it "La Pila deberia lanzar una excepcion de post condicion cuando al pushear un elemento su altura sea 0" do
+      pila = Pila.new(3)
+      pila.define_singleton_method('height') { 0 }
 
-     expect { raise StandardError, 'Error de post condicion'}.
-          to raise_error('Error de post condicion')
+      expect { pila.push(1)}.
+          to_not raise_error
+    end
+
+   it "La Pila debería lanzar una excepcion de pre condicion al intentar popear sin elementos" do
+     pila = Pila.new(3)
+
+     expect { pila.pop()}.
+          to raise_error('Error de pre condicion')
    end
+
+    it "La Pila debería lanzar una excepcion de pre condicion al intentar pushear mas elementos de lo que es capaz" do
+      pila = Pila.new(3)
+      pila.push(1)
+      pila.push(2)
+      pila.push(3)
+      expect { pila.push(4)}.
+          to raise_error('Error de pre condicion')
+    end
 
 
 

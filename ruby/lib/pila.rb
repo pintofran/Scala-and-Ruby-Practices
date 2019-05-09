@@ -1,5 +1,3 @@
-require_relative  'prueba.rb'
-
 class Pila
   attr_accessor :current_node, :capacity
 
@@ -7,20 +5,20 @@ class Pila
 
   post { empty? }
   def initialize(capacity)
-    self.capacity = capacity
-    self.current_node = nil
+    @capacity = capacity
+    @current_node = nil
   end
 
   pre { !full? }
   post { height > 0 }
   def push(element)
-    self.current_node = Node.new(element, current_node)
+    @current_node = Node.new(element, current_node)
   end
 
   pre { !empty? }
   def pop
     element = top
-   self.current_node = @current_node.next_node
+    @current_node = @current_node.next_node
     element
   end
 
@@ -38,7 +36,7 @@ class Pila
   end
 
   def full?
-    height == self.capacity
+    height == capacity
   end
 
   Node = Struct.new(:element, :next_node) do
@@ -47,11 +45,3 @@ class Pila
     end
   end
 end
-
-pila = Pila.new(3)
-pila.push(1)
-pila.push(2)
-pila.push(3)
-puts pila.pop
-puts pila.pop
-puts pila.pop

@@ -39,7 +39,6 @@ class Module
   def post(&bloque)
     proc_nuevo = proc { |*var|
       unless self.instance_exec(*var, &bloque)
-        pp self
         raise "Error de post condicion"
       end
     }

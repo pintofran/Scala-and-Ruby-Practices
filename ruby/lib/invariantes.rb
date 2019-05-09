@@ -84,6 +84,3 @@ class GuerreroDos
   end
 
 end
-
-guer = GuerreroDos.new(80)
-guer.mensaje
