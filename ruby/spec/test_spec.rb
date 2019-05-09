@@ -1,4 +1,6 @@
 require_relative "../lib/prueba"
+require_relative "../lib/invariantes"
+require_relative "../lib/pila"
 
 describe "before_and_after_each_call" do
   context "Ya en Module" do
@@ -35,6 +37,28 @@ describe "before_and_after_each_call" do
       expect(test.se_ejecuto_before).to be true
       expect(test.contador).to be 1
     end
+
+    it "Debería tirar una excepción por la invariante" do
+      guerrero = Guerrero.new(60)
+      expect { raise StandardError, 'Error de consistencia de la clase'}.
+          to raise_error('Error de consistencia de la clase')
+    end
+
+    it "La Pila debería ejecutar el proc 'before' cuando se llama a un metodo" do
+      pila = Pila.new(3)
+      pila.push(1)
+      expect { raise StandardError, 'Error de pre condicion'}.
+          to_not raise_error('Error de Error de pre condicion')
+    end
+
+    it "La Pila debería ejecutar el proc 'after' cuando se llama a un metodo" do
+      pila = Pila.new(3)
+      pila.push(1)
+      expect { raise StandardError, 'Error de post condicion'}.
+          to_not raise_error('Error de Error de post condicion')
+    end
+
+
 
 
 

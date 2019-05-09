@@ -48,10 +48,10 @@ class Pila
   end
 end
 
-pila = Pila.new(3)
-pila.push(1)
-pila.push(2)
-pila.push(3)
-puts pila.pop
-puts pila.pop
-puts pila.pop
+#pila = Pila.new(3)
+#pila.push(1)
+#pila.push(2)
+#pila.push(3)
+#puts pila.pop
+#puts pila.pop
+#puts pila.pop
