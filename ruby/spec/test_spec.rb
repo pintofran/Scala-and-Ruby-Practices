@@ -56,7 +56,7 @@ describe "before_and_after_each_call" do
       pila.define_singleton_method('height') { 0 }
 
       expect { pila.push(1)}.
-          to_not raise_error
+          to raise_error('Error de post condicion')
     end
 
    it "La Pila debería lanzar una excepcion de pre condicion al intentar popear sin elementos" do
