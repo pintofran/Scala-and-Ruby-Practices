@@ -1,5 +1,3 @@
-require_relative  'prueba.rb'
-
 class Guerrero
 
   before_and_after_each_call(

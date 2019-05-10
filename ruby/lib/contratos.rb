@@ -30,7 +30,7 @@ class Module
   def pre(&bloque)
     proc_nuevo = proc { |*var|
       unless self.instance_exec(*var, &bloque)
-        raise "Error de pre condicion"
+        raise ErrorPrePost, "Error de pre condicion"
       end
     }
     @pre_condicion = proc_nuevo
@@ -39,7 +39,7 @@ class Module
   def post(&bloque)
     proc_nuevo = proc { |*var|
       unless self.instance_exec(*var, &bloque)
-        raise "Error de post condicion"
+        raise ErrorPrePost, "Error de post condicion"
       end
     }
     @post_condicion = proc_nuevo
@@ -137,7 +137,7 @@ class BloquesEjecutables
 
     proc_modificado = proc {
       unless self.instance_eval(&bloque)
-        raise "Error de consistencia de la clase"
+        raise ErrorConsistencia, "Error de consistencia de la clase"
       end
     }
     @bloques.push(proc_modificado)
@@ -150,5 +150,17 @@ class BloquesEjecutables
       this.class.ejecutarSinLoop(this,nil,&proc)
     }
 
+  end
+end
+
+class ErrorPrePost < StandardError
+  def initialize(msg="Error")
+    super
+  end
+end
+
+class ErrorConsistencia < StandardError
+  def initialize(msg="Error")
+    super
   end
 end
