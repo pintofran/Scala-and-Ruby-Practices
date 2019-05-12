@@ -56,9 +56,6 @@ describe 'Pila comportamiento normal' do
 end
 
 describe 'Pila falla por invariante' do
-  after(:all) do
-    Pila.instance_variables.
-        end
 
     it "Deberia tirar una excepcion por la invariante" do
 
@@ -96,4 +93,3 @@ describe 'Pila falla por invariante' do
           to raise_error('Error de post condicion')
     end
   end
-end

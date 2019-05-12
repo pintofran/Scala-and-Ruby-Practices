@@ -48,7 +48,12 @@ class Module
   def ejecutarSinLoop(this,var,&proc)
     if this.class.es_ejecucion_normal
       this.class.es_ejecucion_normal = false
-      this.instance_exec(var,&proc)
+      begin
+        this.instance_exec(var,&proc)
+      rescue Exception
+        this.class.es_ejecucion_normal = true
+        raise
+      end
       this.class.es_ejecucion_normal = true
     end
   end
