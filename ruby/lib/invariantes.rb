@@ -1,3 +1,4 @@
+
 class Guerrero
 
   before_and_after_each_call(
@@ -40,7 +41,7 @@ class Guerrero
     return 4
   end
 
-  pre { |result| result == 5 }
+  pre { |result| result == 3 }
   def romper_por_pre
     return 4
   end

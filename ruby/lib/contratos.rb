@@ -28,8 +28,9 @@ class Module
   end
 
   def pre(&bloque)
-    proc_nuevo = proc { |*var|
-      unless self.instance_exec(*var, &bloque)
+    init
+    proc_nuevo = proc { |*var,this|
+      unless this.instance_exec(*var, &bloque)
         raise ErrorPrePost, "Error de pre condicion"
       end
     }
@@ -37,8 +38,9 @@ class Module
   end
 
   def post(&bloque)
-    proc_nuevo = proc { |*var|
-      unless self.instance_exec(*var, &bloque)
+    init
+    proc_nuevo = proc { |*var,this|
+      unless this.instance_exec(*var, &bloque)
         raise ErrorPrePost, "Error de post condicion"
       end
     }
@@ -49,7 +51,7 @@ class Module
     if this.class.es_ejecucion_normal
       this.class.es_ejecucion_normal = false
       begin
-        this.instance_exec(var,&proc)
+        this.instance_exec(*var,this,&proc)
       rescue Exception
         this.class.es_ejecucion_normal = true
         raise
@@ -62,7 +64,7 @@ class Module
 
     pre_proc=@pre_condicion
     if pre_proc.nil?
-      pre_proc = proc {true}
+      pre_proc = proc { |*args| true}
     end
 
     post_proc=@post_condicion
@@ -70,58 +72,82 @@ class Module
       post_proc = proc { |*args| true}
     end
 
-      if @new_method && name != 'initialize'.to_sym
+    if @new_method && name != 'initialize'.to_sym
+      @new_method = false
+
+      old_method = instance_method(name)
+
+      parameter_names = old_method.parameters.map {|lista| lista.drop(1).pop}
+
+      #Sobreescribimos el metodo
+      define_method(name) do |*arg|
+
+        parameter_names = old_method.parameters.map {|lista| lista.drop(1).pop}
+        parameter_values = arg
+        dictionary = Hash[parameter_names.zip parameter_values]
+        dictionary = dictionary.filter {|key,value| key.to_s != "element"}
+
+        self.singleton_class.class_eval { attr_accessor *(dictionary.keys.map {|key| key.to_s }) }
+
+        dictionary.each {|key, value|
+          self.send(key.to_s++'=', value)
+        }
+
+        self.class.ejecutarSinLoop(self,nil,&pre_proc)
+
+        dictionary.each {|key, value|
+         self.singleton_class.remove_method((key.to_s++'=').to_sym)
+         self.singleton_class.remove_method(key)
+        }
+
+        self.class.bloques_before.ejecutar(self)
+
+        var = old_method.bind(self).call(*arg)
+
+        self.class.invariants.ejecutar(self)
+
+        self.class.bloques_after.ejecutar(self)
+
+        self.singleton_class.class_eval { attr_accessor *(dictionary.keys.map {|key| key.to_s }) }
+
+        self.class.ejecutarSinLoop(self,var,&post_proc)
+
+        dictionary.each {|key, value|
+          self.singleton_class.remove_method((key.to_s++'=').to_sym)
+          self.singleton_class.remove_method(key)
+        }
+
+        return var
+
+      end
+
+      @pre_condicion = nil
+      @post_condicion = nil
+      @new_method = true
+
+    else
+      if @new_method && name == 'initialize'.to_sym
         @new_method = false
 
         old_method = instance_method(name)
 
-        #Sobreescribimos el metodo
         define_method(name) do |*arg|
 
           self.class.ejecutarSinLoop(self,nil,&pre_proc)
 
-          self.class.bloques_before.ejecutar(self)
-
           var = old_method.bind(self).call(*arg)
 
           self.class.invariants.ejecutar(self)
-
-          self.class.bloques_after.ejecutar(self)
-
           self.class.ejecutarSinLoop(self,var,&post_proc)
-
 
           return var
 
         end
-
         @pre_condicion = nil
         @post_condicion = nil
         @new_method = true
-
-      else
-        if @new_method && name == 'initialize'.to_sym
-             @new_method = false
-
-             old_method = instance_method(name)
-
-             define_method(name) do |*arg|
-
-               self.class.ejecutarSinLoop(self,nil,&pre_proc)
-
-               var = old_method.bind(self).call(*arg)
-
-               self.class.invariants.ejecutar(self)
-               self.class.ejecutarSinLoop(self,var,&post_proc)
-
-               return var
-
-             end
-             @pre_condicion = nil
-             @post_condicion = nil
-              @new_method = true
-           end
       end
+    end
   end
 end
 
@@ -169,3 +195,4 @@ class ErrorConsistencia < StandardError
     super
   end
 end
+

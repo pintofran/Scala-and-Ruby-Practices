@@ -1,5 +1,6 @@
 require_relative "../lib/pila"
 require_relative "../lib/invariantes"
+require_relative "../lib/operaciones"
 
 class Testing
 
@@ -19,6 +20,9 @@ class Testing
     @contador = @contador + 1
   end
 end
+
+context 'hola' do
+
 
 describe 'before_and_after' do
 
@@ -72,6 +76,12 @@ describe 'Pila falla por invariante' do
           to raise_error('Error de pre condicion')
     end
 
+    it "El Guerrero deberia lanzar una excepcion de pre condicion al implementar el method romper_por_pre" do
+      guerrero = Guerrero.new(60)
+      expect {guerrero.romper_por_post}.
+          to raise_error('Error de post condicion')
+    end
+
     it "La Pila deberia lanzar una excepcion de pre condicion al intentar pushear mas elementos de lo que es capaz" do
       pila = Pila.new(3)
       pila.push(1)
@@ -93,3 +103,50 @@ describe 'Pila falla por invariante' do
           to raise_error('Error de post condicion')
     end
   end
+
+describe 'Post con parametros' do
+
+  it "No deberia fallar" do
+    operacion = Operaciones.new
+
+    expect(operacion.dividir(10,2)).to eq(5)
+  end
+
+  it "Deberia Fallar" do
+    operacion = Operaciones.new
+
+    expect {operacion.dividirYFallar(10,2)}.
+        to raise_error(ErrorPrePost,'Error de post condicion')
+  end
+
+
+
+  it "No Deberia Fallar" do
+    operacion = Operaciones.new
+
+    expect {operacion.sumar(3,2)}.
+        not_to raise_error
+  end
+
+
+  it "Deberia Fallar" do
+    operacion = Operaciones.new
+
+    expect {operacion.sumar(4,2)}.
+        to raise_error(ErrorPrePost,'Error de post condicion')
+  end
+
+
+
+
+
+end
+  describe 'hola' do
+    it "Deberia Fallar" do
+      operacion = Operaciones.new
+
+      expect {operacion.sumar(5,5)}.
+          to raise_error(ErrorPrePost,'Error de post condicion')
+    end
+  end
+end

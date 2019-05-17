@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoTestManager">
+    <enabled-run-configurations>
+      <run-configuration type="RSpecRunConfigurationType" name="hola Post con parametros: grupo8-2019-1c" />
+    </enabled-run-configurations>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b097c21e-11e9-4fba-9fcb-0ff1705f10c5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruby/lib/prueba.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/lib/prueba.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ruby/lib/contratos.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/lib/contratos.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ruby/lib/invariantes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/lib/invariantes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ruby/spec/prueba_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/spec/prueba_spec.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +19,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_hola_Deberia_Fallar__grupo8_2019_1c.rcov" NAME="hola hola Deberia Fallar: grupo8-2019-1c Coverage Results" MODIFIED="1558122174673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@Pila_comportamiento_normal__grupo8_2019_1c.rcov" NAME="Pila comportamiento normal: grupo8-2019-1c Coverage Results" MODIFIED="1557799006215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Post_con_parametros_No_deberia_fallar__grupo8_2019_1c.rcov" NAME="hola Post con parametros No deberia fallar: grupo8-2019-1c Coverage Results" MODIFIED="1557801378190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola__grupo8_2019_1c.rcov" NAME="hola: grupo8-2019-1c Coverage Results" MODIFIED="1558136618056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Pila_fallando_por_pre__grupo8_2019_1c.rcov" NAME="hola Pila fallando por pre: grupo8-2019-1c Coverage Results" MODIFIED="1557801938063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Fallar_por_post__grupo8_2019_1c.rcov" NAME="hola Fallar por post: grupo8-2019-1c Coverage Results" MODIFIED="1558123184466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Fallar_por_post_La_Pila_deberia_lanzar_una_excepcion_de_post_condicion_cuando_al_pushear_un_elemento_su_altura_sea_0__grupo8_2019_1c.rcov" NAME="hola Fallar por post La Pila deberia lanzar una excepcion de post condicion cuando al pushear un elemento su altura sea 0: grupo8-2019-1c Coverage Results" MODIFIED="1558129902611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Pila_fallando_por_pre_La_Pila_deberia_lanzar_una_excepcion_de_pre_condicion_al_intentar_pushear_mas_elementos_de_lo_que_es_capaz__grupo8_2019_1c.rcov" NAME="hola Pila fallando por pre La Pila deberia lanzar una excepcion de pre condicion al intentar pushear mas elementos de lo que es capaz: grupo8-2019-1c Coverage Results" MODIFIED="1558130187283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@Prueba_materia_debería_pasar_este_test__grupo8_2019_1c.rcov" NAME="Prueba#materia debería pasar este test: grupo8-2019-1c Coverage Results" MODIFIED="1555616743308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@Fallar_por_post_La_Pila_deberia_lanzar_una_excepcion_de_post_condicion_cuando_al_pushear_un_elemento_su_altura_sea_0__grupo8_2019_1c.rcov" NAME="Fallar por post La Pila deberia lanzar una excepcion de post condicion cuando al pushear un elemento su altura sea 0: grupo8-2019-1c Coverage Results" MODIFIED="1557799011141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Post_con_parametros__grupo8_2019_1c.rcov" NAME="hola Post con parametros: grupo8-2019-1c Coverage Results" MODIFIED="1558136001740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Pila_fallando_por_pre_El_Guerrero_deberia_lanzar_una_excepcion_de_pre_condicion_al_implementar_el_method_romper_por_pre__grupo8_2019_1c.rcov" NAME="hola Pila fallando por pre El Guerrero deberia lanzar una excepcion de pre condicion al implementar el method romper_por_pre: grupo8-2019-1c Coverage Results" MODIFIED="1558130195856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Post_con_parametros_Deberia_Fallar__grupo8_2019_1c.rcov" NAME="hola Post con parametros Deberia Fallar: grupo8-2019-1c Coverage Results" MODIFIED="1558133970784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_hola__grupo8_2019_1c.rcov" NAME="hola hola: grupo8-2019-1c Coverage Results" MODIFIED="1557802407240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="grupo8-2019-1c" />
@@ -20,10 +40,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ruby/lib/prueba.rb">
+        <entry file="file://$PROJECT_DIR$/ruby/lib/contratos.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+            <state relative-caret-position="99">
+              <caret line="95" column="54" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ruby/lib/hola.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ruby/spec/prueba_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="108" column="2" selection-start-line="108" selection-start-column="2" selection-end-line="108" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -31,13 +69,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ruby/lib/invariantes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" selection-start-line="13" selection-end-line="14" />
+            <state relative-caret-position="645">
+              <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ruby/lib/operaciones.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ruby/lib/pila.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Ruby Class Template" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,8 +108,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ruby/lib/invariantes.rb" />
         <option value="$PROJECT_DIR$/ruby/lib/prueba.rb" />
+        <option value="$PROJECT_DIR$/ruby/lib/post.rb" />
+        <option value="$PROJECT_DIR$/ruby/lib/hola.rb" />
+        <option value="$PROJECT_DIR$/ruby/lib/invariantes.rb" />
+        <option value="$PROJECT_DIR$/ruby/lib/operaciones.rb" />
+        <option value="$PROJECT_DIR$/ruby/spec/prueba_spec.rb" />
+        <option value="$PROJECT_DIR$/ruby/lib/contratos.rb" />
       </list>
     </option>
   </component>
@@ -110,8 +178,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Prueba#materia debería pasar este test: grupo8-2019-1c" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+  <component name="RunManager" selected="RSpec.hola: grupo8-2019-1c">
+    <configuration name="hola Pila fallando por pre El Guerrero deberia lanzar una excepcion de pre condicion al implementar el method romper_por_pre: grupo8-2019-1c" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <module name="grupo8-2019-1c" />
       <predefined_log_file enabled="true" id="RUBY_RSPEC" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
@@ -130,10 +198,142 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/ruby/spec/test_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/ruby/spec/prueba_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="'**/*_spec.rb'" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Prueba#materia debería pasar este test" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="hola Pila fallando por pre El Guerrero deberia lanzar una excepcion de pre condicion al implementar el method romper_por_pre" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hola Pila fallando por pre La Pila deberia lanzar una excepcion de pre condicion al intentar pushear mas elementos de lo que es capaz: grupo8-2019-1c" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <module name="grupo8-2019-1c" />
+      <predefined_log_file enabled="true" id="RUBY_RSPEC" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$/ruby" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/ruby/spec/prueba_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="'**/*_spec.rb'" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="hola Pila fallando por pre La Pila deberia lanzar una excepcion de pre condicion al intentar pushear mas elementos de lo que es capaz" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hola Post con parametros Deberia Fallar: grupo8-2019-1c" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <module name="grupo8-2019-1c" />
+      <predefined_log_file enabled="true" id="RUBY_RSPEC" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$/ruby" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/ruby/spec/prueba_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="'**/*_spec.rb'" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="hola Post con parametros Deberia Fallar" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hola Post con parametros: grupo8-2019-1c" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <module name="grupo8-2019-1c" />
+      <predefined_log_file enabled="true" id="RUBY_RSPEC" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$/ruby" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/ruby/spec/prueba_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="'**/*_spec.rb'" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="hola Post con parametros" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hola: grupo8-2019-1c" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <module name="grupo8-2019-1c" />
+      <predefined_log_file enabled="true" id="RUBY_RSPEC" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$/ruby" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/ruby/spec/prueba_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="'**/*_spec.rb'" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="hola" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -146,7 +346,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="RSpec.Prueba#materia debería pasar este test: grupo8-2019-1c" />
+        <item itemvalue="RSpec.hola: grupo8-2019-1c" />
+        <item itemvalue="RSpec.hola Post con parametros: grupo8-2019-1c" />
+        <item itemvalue="RSpec.hola Post con parametros Deberia Fallar: grupo8-2019-1c" />
+        <item itemvalue="RSpec.hola Pila fallando por pre El Guerrero deberia lanzar una excepcion de pre condicion al implementar el method romper_por_pre: grupo8-2019-1c" />
+        <item itemvalue="RSpec.hola Pila fallando por pre La Pila deberia lanzar una excepcion de pre condicion al intentar pushear mas elementos de lo que es capaz: grupo8-2019-1c" />
       </list>
     </recent_temporary>
   </component>
@@ -165,27 +369,57 @@
       <workItem from="1555710973991" duration="529000" />
       <workItem from="1556234387362" duration="3624000" />
       <workItem from="1556301518146" duration="9362000" />
+      <workItem from="1557798994855" duration="3253000" />
+      <workItem from="1558099768660" duration="13549000" />
+      <workItem from="1558136037467" duration="584000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Prueba#materia_debería_pasar_este_test__grupo8-2019-1c - 2019.04.18 at 16h 45m 44s.xml">
-      <configuration name="Prueba#materia debería pasar este test: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 37m 36s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 38m 07s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 38m 39s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 40m 48s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 40m 55s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 41m 59s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 42m 41s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 43m 08s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 43m 23s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 43m 39s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22692000" />
+    <option name="totallyTimeSpent" value="40078000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49840763" visible="true" weight="0.25946277" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49840763" visible="true" weight="0.26862028" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50159234" side_tool="true" weight="0.25946277" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32941177" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32941177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -193,7 +427,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32834226" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32834226" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -246,13 +480,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ruby/spec/test_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/spec/test_spec.rb" />
     <entry file="file://$PROJECT_DIR$/ruby/spec/spec_helper.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -263,17 +491,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ruby/lib/invariantes.rb">
+    <entry file="file://$PROJECT_DIR$/ruby/lib/prueba.rb" />
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.6.2/gems/rspec-expectations-3.8.2/lib/rspec/expectations/expectation_target.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" selection-start-line="13" selection-end-line="14" />
+        <state relative-caret-position="178">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ruby/lib/prueba.rb">
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.6.2/gems/rspec-expectations-3.8.2/lib/rspec/expectations/syntax.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+        <state relative-caret-position="178">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/lib/invariantes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/lib/pila.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/lib/operaciones.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/spec/prueba_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="108" column="2" selection-start-line="108" selection-start-column="2" selection-end-line="108" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/lib/hola.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/lib/contratos.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="95" column="54" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
         </state>
       </provider>
     </entry>
