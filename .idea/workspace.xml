@@ -3,14 +3,13 @@
   <component name="AutoTestManager">
     <enabled-run-configurations>
       <run-configuration type="RSpecRunConfigurationType" name="hola Post con parametros: grupo8-2019-1c" />
+      <run-configuration type="RSpecRunConfigurationType" name="hola: grupo8-2019-1c" />
     </enabled-run-configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b097c21e-11e9-4fba-9fcb-0ff1705f10c5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ruby/lib/contratos.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/lib/contratos.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruby/lib/invariantes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/lib/invariantes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruby/spec/prueba_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/ruby/spec/prueba_spec.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +21,7 @@
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_hola_Deberia_Fallar__grupo8_2019_1c.rcov" NAME="hola hola Deberia Fallar: grupo8-2019-1c Coverage Results" MODIFIED="1558122174673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@Pila_comportamiento_normal__grupo8_2019_1c.rcov" NAME="Pila comportamiento normal: grupo8-2019-1c Coverage Results" MODIFIED="1557799006215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Post_con_parametros_No_deberia_fallar__grupo8_2019_1c.rcov" NAME="hola Post con parametros No deberia fallar: grupo8-2019-1c Coverage Results" MODIFIED="1557801378190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
-    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola__grupo8_2019_1c.rcov" NAME="hola: grupo8-2019-1c Coverage Results" MODIFIED="1558136618056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola__grupo8_2019_1c.rcov" NAME="hola: grupo8-2019-1c Coverage Results" MODIFIED="1558138412186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Pila_fallando_por_pre__grupo8_2019_1c.rcov" NAME="hola Pila fallando por pre: grupo8-2019-1c Coverage Results" MODIFIED="1557801938063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Fallar_por_post__grupo8_2019_1c.rcov" NAME="hola Fallar por post: grupo8-2019-1c Coverage Results" MODIFIED="1558123184466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Fallar_por_post_La_Pila_deberia_lanzar_una_excepcion_de_post_condicion_cuando_al_pushear_un_elemento_su_altura_sea_0__grupo8_2019_1c.rcov" NAME="hola Fallar por post La Pila deberia lanzar una excepcion de post condicion cuando al pushear un elemento su altura sea 0: grupo8-2019-1c Coverage Results" MODIFIED="1558129902611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
@@ -42,8 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ruby/lib/contratos.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="95" column="54" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
+            <state relative-caret-position="240">
+              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -371,44 +370,44 @@
       <workItem from="1556301518146" duration="9362000" />
       <workItem from="1557798994855" duration="3253000" />
       <workItem from="1558099768660" duration="13549000" />
-      <workItem from="1558136037467" duration="584000" />
+      <workItem from="1558136037467" duration="2395000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 37m 36s.xml">
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 09m 46s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 38m 07s.xml">
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 10m 12s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 38m 39s.xml">
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 10m 46s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 40m 48s.xml">
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 10m 51s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 40m 55s.xml">
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 11m 45s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 41m 59s.xml">
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 12m 27s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 42m 41s.xml">
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 12m 41s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 43m 08s.xml">
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 12m 45s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 43m 23s.xml">
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 12m 50s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 20h 43m 39s.xml">
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 13m 33s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40078000" />
+    <option name="totallyTimeSpent" value="41889000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
@@ -543,8 +542,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ruby/lib/contratos.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="95" column="54" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
+        <state relative-caret-position="240">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="17" />
         </state>
       </provider>
     </entry>
