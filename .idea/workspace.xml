@@ -2,8 +2,8 @@
 <project version="4">
   <component name="AutoTestManager">
     <enabled-run-configurations>
-      <run-configuration type="RSpecRunConfigurationType" name="hola Post con parametros: grupo8-2019-1c" />
       <run-configuration type="RSpecRunConfigurationType" name="hola: grupo8-2019-1c" />
+      <run-configuration type="RSpecRunConfigurationType" name="hola Post con parametros: grupo8-2019-1c" />
     </enabled-run-configurations>
   </component>
   <component name="ChangeListManager">
@@ -21,7 +21,7 @@
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_hola_Deberia_Fallar__grupo8_2019_1c.rcov" NAME="hola hola Deberia Fallar: grupo8-2019-1c Coverage Results" MODIFIED="1558122174673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@Pila_comportamiento_normal__grupo8_2019_1c.rcov" NAME="Pila comportamiento normal: grupo8-2019-1c Coverage Results" MODIFIED="1557799006215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Post_con_parametros_No_deberia_fallar__grupo8_2019_1c.rcov" NAME="hola Post con parametros No deberia fallar: grupo8-2019-1c Coverage Results" MODIFIED="1557801378190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
-    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola__grupo8_2019_1c.rcov" NAME="hola: grupo8-2019-1c Coverage Results" MODIFIED="1558138412186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola__grupo8_2019_1c.rcov" NAME="hola: grupo8-2019-1c Coverage Results" MODIFIED="1558141121357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Pila_fallando_por_pre__grupo8_2019_1c.rcov" NAME="hola Pila fallando por pre: grupo8-2019-1c Coverage Results" MODIFIED="1557801938063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Fallar_por_post__grupo8_2019_1c.rcov" NAME="hola Fallar por post: grupo8-2019-1c Coverage Results" MODIFIED="1558123184466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Fallar_por_post_La_Pila_deberia_lanzar_una_excepcion_de_post_condicion_cuando_al_pushear_un_elemento_su_altura_sea_0__grupo8_2019_1c.rcov" NAME="hola Fallar por post La Pila deberia lanzar una excepcion de post condicion cuando al pushear un elemento su altura sea 0: grupo8-2019-1c Coverage Results" MODIFIED="1558129902611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
@@ -30,7 +30,7 @@
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@Fallar_por_post_La_Pila_deberia_lanzar_una_excepcion_de_post_condicion_cuando_al_pushear_un_elemento_su_altura_sea_0__grupo8_2019_1c.rcov" NAME="Fallar por post La Pila deberia lanzar una excepcion de post condicion cuando al pushear un elemento su altura sea 0: grupo8-2019-1c Coverage Results" MODIFIED="1557799011141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Post_con_parametros__grupo8_2019_1c.rcov" NAME="hola Post con parametros: grupo8-2019-1c Coverage Results" MODIFIED="1558136001740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Pila_fallando_por_pre_El_Guerrero_deberia_lanzar_una_excepcion_de_pre_condicion_al_implementar_el_method_romper_por_pre__grupo8_2019_1c.rcov" NAME="hola Pila fallando por pre El Guerrero deberia lanzar una excepcion de pre condicion al implementar el method romper_por_pre: grupo8-2019-1c Coverage Results" MODIFIED="1558130195856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
-    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Post_con_parametros_Deberia_Fallar__grupo8_2019_1c.rcov" NAME="hola Post con parametros Deberia Fallar: grupo8-2019-1c Coverage Results" MODIFIED="1558133970784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
+    <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_Post_con_parametros_Deberia_Fallar__grupo8_2019_1c.rcov" NAME="hola Post con parametros Deberia Fallar: grupo8-2019-1c Coverage Results" MODIFIED="1558141039348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
     <SUITE FILE_PATH="coverage/grupo8_2019_1c@hola_hola__grupo8_2019_1c.rcov" NAME="hola hola: grupo8-2019-1c Coverage Results" MODIFIED="1557802407240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ruby" MODULE_NAME="grupo8-2019-1c" />
   </component>
   <component name="FavoritesManager">
@@ -41,8 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ruby/lib/contratos.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="17" />
+            <state relative-caret-position="695">
+              <caret line="121" column="7" lean-forward="true" selection-start-line="121" selection-start-column="7" selection-end-line="121" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -51,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/ruby/lib/hola.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -59,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ruby/spec/prueba_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="108" column="2" selection-start-line="108" selection-start-column="2" selection-end-line="108" selection-end-column="2" />
+            <state relative-caret-position="1860">
+              <caret line="124" column="31" selection-start-line="124" selection-start-column="31" selection-end-line="124" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -87,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/ruby/lib/pila.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -127,7 +127,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -156,6 +155,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -346,8 +346,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="RSpec.hola: grupo8-2019-1c" />
-        <item itemvalue="RSpec.hola Post con parametros: grupo8-2019-1c" />
         <item itemvalue="RSpec.hola Post con parametros Deberia Fallar: grupo8-2019-1c" />
+        <item itemvalue="RSpec.hola Post con parametros: grupo8-2019-1c" />
         <item itemvalue="RSpec.hola Pila fallando por pre El Guerrero deberia lanzar una excepcion de pre condicion al implementar el method romper_por_pre: grupo8-2019-1c" />
         <item itemvalue="RSpec.hola Pila fallando por pre La Pila deberia lanzar una excepcion de pre condicion al intentar pushear mas elementos de lo que es capaz: grupo8-2019-1c" />
       </list>
@@ -370,26 +370,14 @@
       <workItem from="1556301518146" duration="9362000" />
       <workItem from="1557798994855" duration="3253000" />
       <workItem from="1558099768660" duration="13549000" />
-      <workItem from="1558136037467" duration="2395000" />
+      <workItem from="1558136037467" duration="2443000" />
+      <workItem from="1558140964140" duration="180000" />
+      <workItem from="1558148664769" duration="277000" />
+      <workItem from="1558997595763" duration="600000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 09m 46s.xml">
-      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 10m 12s.xml">
-      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 10m 46s.xml">
-      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 10m 51s.xml">
-      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 11m 45s.xml">
-      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
     <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 12m 27s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
@@ -405,24 +393,47 @@
     <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 13m 33s.xml">
       <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
     </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 56m 16s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola_Post_con_parametros_Deberia_Fallar__grupo8-2019-1c - 2019.05.17 at 21h 57m 20s.xml">
+      <configuration name="hola Post con parametros Deberia Fallar: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 58m 02s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 58m 40s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="hola__grupo8-2019-1c - 2019.05.17 at 21h 58m 42s.xml">
+      <configuration name="hola: grupo8-2019-1c" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41889000" />
+    <option name="totallyTimeSpent" value="42994000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49840763" visible="true" weight="0.26862028" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49840763" visible="true" weight="0.2777778" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50159234" side_tool="true" weight="0.25946277" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32941177" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32941177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32941177" />
@@ -505,17 +516,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/lib/contratos.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="695">
+          <caret line="121" column="7" lean-forward="true" selection-start-line="121" selection-start-column="7" selection-end-line="121" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/lib/hola.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruby/spec/prueba_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1860">
+          <caret line="124" column="31" selection-start-line="124" selection-start-column="31" selection-end-line="124" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ruby/lib/invariantes.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ruby/lib/pila.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -526,24 +551,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ruby/spec/prueba_spec.rb">
+    <entry file="file://$PROJECT_DIR$/ruby/lib/pila.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="108" column="2" selection-start-line="108" selection-start-column="2" selection-end-line="108" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ruby/lib/hola.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ruby/lib/contratos.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="17" />
+        <state relative-caret-position="105">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
         </state>
       </provider>
     </entry>

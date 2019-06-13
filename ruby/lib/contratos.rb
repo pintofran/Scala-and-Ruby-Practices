@@ -83,7 +83,7 @@ class Module
         parameter_names = old_method.parameters.map {|lista| lista.drop(1).pop}
         parameter_values = arg
         dictionary = Hash[parameter_names.zip parameter_values]
-        dictionary = dictionary.filter {|key,value| key.to_s != "element"}
+        #dictionary = dictionary.filter {|key,value| key.to_s != "element"}
 
         TempVars.crear_singleton_accesors_temporales(self,*dictionary.keys.map {|key| key.to_s })
         dictionary.each {|key, value|
