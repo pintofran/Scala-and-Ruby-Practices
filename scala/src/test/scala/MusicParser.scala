@@ -11,12 +11,36 @@ class MusicParserTest extends FreeSpec with Matchers {
   }
 
   "Parseo Compuesto" - {
-  "Parseo Multiple" - {
+    "Parseo Multiple" - {
       "Ok" in {
         assert(new MusicParser("2x(A B 3x(F G 2x(A))) F B E").parse() == List(A, B, F, G, A, A, F, G, A, A, F, G, A, A, A, B, F, G, A, A, F, G, A, A, F, G, A, A, F, B, E))
       }
     }
-
+    "Parseo Multiple 2digitos" - {
+      "Ok" in {
+        assert(new MusicParser("F B 10x(A) B B E").parse() == List(F, B, A, A, A, A, A, A, A, A, A, A, B, B, E))
+      }
+    }
+    "Parseo Multiple con error de sintaxis de patron" - {
+      "Not Ok" in {
+        assertThrows[NotOpenBracketException](new MusicParser("2xx(A B 3x(F G 2x(A))) F B E").parse())
+      }
+    }
+    "Parseo Multiple con error sin x" - {
+      "Not Ok" in {
+        assertThrows[NotXException](new MusicParser("2(A B 3x(F G 2x(A))) F B E").parse())
+      }
+    }
+    "Parseo Multiple sin cerrar parentesis" - {
+      "Not Ok" in {
+        assertThrows[NotCloseBracketException](new MusicParser("2x((A B 3x(F G 2x(A))) F B E").parse())
+      }
+    }
+    "error de sintaxis" - {
+      "Not Ok" in {
+        assertThrows[NotANoteException](new MusicParser("(as)d456lsjndfnwf").parse())
+      }
+    }
   }
 
   "MusicParser" - {
