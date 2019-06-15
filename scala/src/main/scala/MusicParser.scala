@@ -41,13 +41,13 @@ class MusicParser(input: String) {
       repetitionCharList += firstDigit
       do { 
         do next = parseChar() while (next == ' ')
-        repetitionCharList += next
+        if (next.isDigit)repetitionCharList += next
       }
-      while (!next.isDigit)
+      while (next.isDigit)
       val repetitionString: String = repetitionCharList.mkString
       if (next == 'x') {
         val repetitionNumber: Int = repetitionString.toInt
-        if (repetitionNumber == 0) return []
+        if (repetitionNumber == 0) return List[Nota]()
         return parsePatternWithRepetitionNumber(repetitionNumber)
       }
       throw new NotXException(next)
@@ -61,15 +61,13 @@ class MusicParser(input: String) {
     try {
       var next: Char = ' '
       do next = parseChar() while (next == ' ')
-      if (next.toString !== "(") {
-        throw new NotOpenBracketException(next)
-      }
+      if (next.toString != "(") throw new NotOpenBracketException(next)
       var patternDeepLevel: Int = 1
       val bracketPatternCharList: ListBuffer[Char] = ListBuffer()
       do { 
         do next = parseChar() while (next == ' ') 
-        if (next.toString == ")") patternDeepLevel --
-        if (next.toString == "(") patternDeepLevel ++
+        if (next.toString == ")") patternDeepLevel -= 1
+        if (next.toString == "(") patternDeepLevel += 1
         if (patternDeepLevel != 0) bracketPatternCharList += next
       }
       while (patternDeepLevel != 0) 
@@ -85,15 +83,16 @@ class MusicParser(input: String) {
     throw new NotCloseBracketException()
   }
 
-def parse(): List[Nota] = {
+  def parse(): List[Nota] = {
     val result: ListBuffer[Nota] = ListBuffer()
     try while (true)
-      result += parseNote()
+      result ++= parseMelody()
     catch {
       case _: EOIParserException =>
     }
     return result.toList
   }
+}
 
 class ParserException(reason: String) extends Exception(reason)
 class EOIParserException extends ParserException("reached end of input")
