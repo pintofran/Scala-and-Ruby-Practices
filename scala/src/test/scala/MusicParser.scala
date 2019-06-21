@@ -63,37 +63,3 @@ class MusicParserTest extends FreeSpec with Matchers {
     }
   }
 }
-class ParserCombinatorTest extends FreeSpec with Matchers {
-  "ParserCombinator" - {
-    "anyChar" - {
-
-      "String vacio y falla" in {
-        assertThrows[ParseError] {
-          val parseador :Parser = ParserCombinator.anyChar
-          parseador.parse("").get
-        }
-      }
-
-      "String piola y anda" in {
-        assert(ParserCombinator.anyChar.parser("hola que tal") == Try(CharResult('h',"ola que tal")))
-      }
-
-    }
-
-    "combination aob" - {
-      "falla" in {
-        assertThrows[ParseError] {
-          ParserCombinator.aob.parser("que tal").get
-        }
-      }
-
-      "funciona con a" in {
-        assert(ParserCombinator.aob.parser("arbol") == Try(CharResult('a',"rbol")))
-      }
-
-      "funciona con b" in {
-        assert(ParserCombinator.aob.parser("bort") == Try(CharResult('b',"ort")))
-      }
-    }
-  }
-}
