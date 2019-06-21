@@ -39,3 +39,8 @@ Importante, el patrón podría anidarse las veces que se quiera.
 > new MusicParser("2x(A B 3x(F G 2x(A))) F B E").parse()
 #=> List(A, B, F, G, A, A, F, G, A, A, F, G, A, A, A, B, F, G, A, A, F, G, A, A, F, G, A, A, F, B, E)
 ```
+
+
+# Parte II
+
+[Enunciado](https://docs.google.com/document/d/1TOblM1E5MtVB-tBrp6f5zVvufnK4Lcr2f71-jGkTAEA/edit#)

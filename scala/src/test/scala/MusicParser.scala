@@ -1,22 +1,16 @@
 import Musica._
+import ParserCombinator.{CharResult, ParseError, Parser}
 import org.scalatest.{FreeSpec, Matchers}
+
+import scala.util.{Success, Try}
 
 class MusicParserTest extends FreeSpec with Matchers {
   def assertParsesSucceededWithResult[T](actualResult: T, expectedResult: T): Unit = {
-    actualResult shouldBe(expectedResult)
+    actualResult shouldBe expectedResult
   }
 
   def assertParseFailed[T](actualResult: ⇒ T): Unit = {
     assertThrows[ParserException](actualResult)
-  }
-
-  "Parseo Compuesto" - {
-  "Parseo Multiple" - {
-      "Ok" in {
-        assert(new MusicParser("2x(A B 3x(F G 2x(A))) F B E").parse() == List(A, B, F, G, A, A, F, G, A, A, F, G, A, A, A, B, F, G, A, A, F, G, A, A, F, G, A, A, F, B, E))
-      }
-    }
-
   }
 
   "MusicParser" - {
@@ -25,8 +19,6 @@ class MusicParserTest extends FreeSpec with Matchers {
         assertParsesSucceededWithResult(new MusicParser("").parse(), Nil)
       }
     }
-
-
 
     "when fed a text that is a note letter" - {
       "parses a list with that one note" in {
@@ -67,6 +59,40 @@ class MusicParserTest extends FreeSpec with Matchers {
         "parses a list with the different notes in order" in {
           assertParsesSucceededWithResult(new MusicParser("A  B").parse(), List(A, B))
         }
+      }
+    }
+  }
+}
+class ParserCombinatorTest extends FreeSpec with Matchers {
+  "ParserCombinator" - {
+    "anyChar" - {
+
+      "String vacio y falla" in {
+        assertThrows[ParseError] {
+          val parseador :Parser = ParserCombinator.anyChar
+          parseador.parse("").get
+        }
+      }
+
+      "String piola y anda" in {
+        assert(ParserCombinator.anyChar.parser("hola que tal") == Try(CharResult('h',"ola que tal")))
+      }
+
+    }
+
+    "combination aob" - {
+      "falla" in {
+        assertThrows[ParseError] {
+          ParserCombinator.aob.parser("que tal").get
+        }
+      }
+
+      "funciona con a" in {
+        assert(ParserCombinator.aob.parser("arbol") == Try(CharResult('a',"rbol")))
+      }
+
+      "funciona con b" in {
+        assert(ParserCombinator.aob.parser("bort") == Try(CharResult('b',"ort")))
       }
     }
   }
