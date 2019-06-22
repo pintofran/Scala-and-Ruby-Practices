@@ -2,23 +2,6 @@ import scala.util.{Failure, Success, Try}
 
 object ParserCombinator {
 
-  trait Result{
-    def remaining() :String
-  }
-
-  /*
-  case class UnitResult(result :Option[Result],remaining: String) extends Result
-
-  case class CharResult(result: Char, remaining: String) extends Result
-
-  case class StringResult(result: String, remaining: String) extends Result
-
-  case class TupleResult(result: ParseResult, remaining: String) extends Result
-
-  type ParseResult = (Try[Result],Try[Result])
-*/
-
-
   type GenericResult[T] = (T,String)
 
   case class NewResult[T] (result :Try[GenericResult[T]]){
@@ -76,11 +59,31 @@ object ParserCombinator {
     }
 
 
+
+    def ~> (otherParser :Parser[T]) = {
+      Parser(
+      (input :String) => NewResult[T](Try(
+        (otherParser.parser(parser(input).result.get._2).result.get._1,otherParser.parser(parser(input).result.get._2).result.get._2)
+      ))
+      )
+    }
+
+    def <~ (otherParser :Parser[T]) = {
+      Parser(
+        (input :String) => NewResult[T](Try(
+          (parser(input).result.get._1,parser(input).result.get._2)
+        ))
+      )
+    }
+
   }
 
   val aob = char('a') <|> char('b')
 
-  val holaMundo = ParserCombinator.string("hola") <> ParserCombinator.string("mundo")
+  val holaMundoConcat = string("hola") <> string("mundo")
+  val holaMundoRightmost = string("hola") ~> string("mundo")
+  val holaMundoLeftmost  = string("hola") <~ string("mundo")
+  
 
   def parseSuccessfullChar(input: String): GenericResult[Char] = (input.head,input.tail)
 
