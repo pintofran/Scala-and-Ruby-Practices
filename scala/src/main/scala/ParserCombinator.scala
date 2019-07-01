@@ -25,13 +25,15 @@ object ParserCombinator {
 
 
   val anyChar = Parser(anyCharFunc)
-  val char: Char => Parser[Char] = (char :Char) => Parser[Char](charFunc(char,_))
+  val char: Char => Parser[Char] = (char :Char) => Parser(charFunc(char,_))
   val void = Parser(voidFunc)
   val letter = Parser(letterFunc)
   val digit = Parser(digitFunc)
   val alphaNum = Parser(alphaNumFunc)
   val string: String => Parser[String] = (expected :String) => Parser[String](stringFunc(expected,_))
 
+  //case objects que heredan de parser
+  //extend Function
 
   class ParseError extends RuntimeException
 
@@ -50,40 +52,94 @@ object ParserCombinator {
       )
     }
 
-    def <>(otherParser :Parser[T]) = {
+    def <>[U](otherParser: Parser[U]): Parser[(T, U)] =
+    {
       Parser(
-        (input :String) => NewResult[(T,T)](Try(
-          ((parser(input).result.get._1,otherParser.parser(parser(input).result.get._2).result.get._1),otherParser.parser(parser(input).result.get._2).result.get._2)
+        (input :String) => NewResult[(T,U)](Try(
+
+          parser(input).result.get match {
+            case (result,remaining) => ((result,otherParser.parser(remaining).getResult()),otherParser.parser(remaining).getRemaining())
+          }
+
         ))
       )
     }
 
-
-
     def ~> (otherParser :Parser[T]) = {
       Parser(
-      (input :String) => NewResult[T](Try(
-        (otherParser.parser(parser(input).result.get._2).result.get._1,otherParser.parser(parser(input).result.get._2).result.get._2)
-      ))
+        (input :String) => NewResult[T](Try(
+          parser(input).result.get match {
+            case (_,remaining) => (otherParser.parser(remaining).getResult(),otherParser.parser(remaining).getRemaining())
+          }
+        ))
       )
     }
 
     def <~ (otherParser :Parser[T]) = {
       Parser(
         (input :String) => NewResult[T](Try(
-          (parser(input).result.get._1,parser(input).result.get._2)
+          parser(input).result.get match {
+            case (result,remaining) => (result,otherParser.parser(remaining).getRemaining())
+          }
         ))
       )
     }
 
+    def satisfies (condition : T => Boolean) = {
+      Parser(
+        (input :String) => NewResult[T](Try(
+          parser(input).result.get match {
+          case (result,remaining) if condition(result) => (result,remaining)
+          case _ => throw new ParseError
+        }
+      )))
+    }
+
+    def opt  = {
+      Parser(
+        (input :String) => NewResult[Option[T]](Try(
+          parser(input).result match {
+            case Success((result,remaining)) => (Some(result),remaining)
+            case _ => (None,input)
+          }
+        )))
+    }
+
+    def +  = {
+      Parser(
+        (input :String) => applyUntilNoRemaining(input).result.get match {
+          case (List(),_) => NewResult[List[T]](Try(throw new ParseError))
+          case _ => applyUntilNoRemaining(input)
+        }
+      )
+    }
+
+    def * = {
+      Parser(
+        (input :String) => applyUntilNoRemaining(input)
+      )
+    }
+
+    def applyUntilNoRemaining(input:String,resultList: List[T] = List()):NewResult[List[T]] = parser(input).result match {
+      case Success((result,"")) => NewResult(Try((resultList ++ List(result),"")))
+      case Success((result,remaining)) => applyUntilNoRemaining(remaining,resultList ++ List(result))
+      case _ => NewResult(Try((resultList,input)))
+      }
+
   }
 
-  val aob = char('a') <|> char('b')
+  val aob: Parser[Char] = char('a') <|> char('b')
+  val holaMundoConcat: Parser[(String, String)] = string("hola") <> string("mundo")
+  val holaMundoRightmost: Parser[String] = string("hola") ~> string("mundo")
+  val holaMundoLeftmost: Parser[String] = string("hola") <~ string("mundo")
 
-  val holaMundoConcat = string("hola") <> string("mundo")
-  val holaMundoRightmost = string("hola") ~> string("mundo")
-  val holaMundoLeftmost  = string("hola") <~ string("mundo")
-  
+  val talVezIn = string("in").opt
+  // precedencia parsea exitosamente las palabras "infija" y "fija"
+  val precedencia = talVezIn <> string("fija")
+
+  val kleenePositivaDeHola = string("hola").+
+  val kleeneDeC = char('C').*
+
 
   def parseSuccessfullChar(input: String): GenericResult[Char] = (input.head,input.tail)
 
