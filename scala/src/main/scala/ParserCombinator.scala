@@ -120,6 +120,44 @@ object ParserCombinator {
       )
     }
 
+    def sepBy (separator :Char) = {
+      var esSeparador: Bool = false
+      do
+       var charBuffer: ListBuffer[Nota] = ListBuffer()
+       var nextChar = anyChar.parse(input).result.get
+      if !(anyChar.parse(input).result.get == separator) charBuffer ++= nextChar()
+      else esSeparador = true
+      while !esSeparador
+      Parser(
+        (input :String) => NewResult[U](Try(
+          parser(charBuffer.toString).result.get match {
+            case (result,remaining) => (constant,"")
+          }
+        ))input)
+      )
+      //Falta repeticion
+    }
+
+    def const (constant :U) = {
+      Parser(
+      (input :String) => NewResult[U](Try(
+          parser(input).result.get match {
+            case (result,remaining) => (constant,"")
+          }
+        ))
+      )
+    }
+
+    def map (maperFunc : T => U ) = {
+      Parser(
+      (input :String) => NewResult[U](Try(
+          parser(input).result.get match {
+            case (result,remaining) => (maperFunc(result),"")
+          }
+        ))
+      )
+    }
+
     def applyUntilNoRemaining(input:String,resultList: List[T] = List()):NewResult[List[T]] = parser(input).result match {
       case Success((result,"")) => NewResult(Try((resultList ++ List(result),"")))
       case Success((result,remaining)) => applyUntilNoRemaining(remaining,resultList ++ List(result))
