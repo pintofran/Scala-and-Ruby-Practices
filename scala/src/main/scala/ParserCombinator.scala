@@ -1,3 +1,7 @@
+import Musica.Nota
+import com.sun.org.apache.xpath.internal.operations.Bool
+
+import scala.collection.mutable.ListBuffer
 import scala.util.{Failure, Success, Try}
 
 object ParserCombinator {
@@ -120,6 +124,17 @@ object ParserCombinator {
       )
     }
 
+    def sepBy[U](otherParser: Parser[U]) = {
+      val newParser = (this <> otherParser).+
+      Parser(
+        (input :String) => newParser.parse(input).result match {
+          case Success((list,rem)) => NewResult[List[T]](Try((list.map( x => x._1 ),rem)))
+          case _ => NewResult(Try(throw new ParseError))
+        }
+      )
+    }
+
+    /*
     def sepBy (separator :Char) = {
       var esSeparador: Bool = false
       do
@@ -137,22 +152,22 @@ object ParserCombinator {
       )
       //Falta repeticion
     }
-
-    def const (constant :U) = {
+*/
+    def const [U](constant :U) = {
       Parser(
       (input :String) => NewResult[U](Try(
           parser(input).result.get match {
-            case (result,remaining) => (constant,"")
+            case (_, _) => (constant,"")
           }
         ))
       )
     }
 
-    def map (maperFunc : T => U ) = {
+    def map [U](maperFunc : T => U ) = {
       Parser(
       (input :String) => NewResult[U](Try(
           parser(input).result.get match {
-            case (result,remaining) => (maperFunc(result),"")
+            case (result, _) => (maperFunc(result),"")
           }
         ))
       )
