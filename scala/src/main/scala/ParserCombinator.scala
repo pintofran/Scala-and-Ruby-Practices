@@ -234,28 +234,36 @@ object ParserCombinator {
 
   //Caso practico
 
+  import Musica._
+/*
+  val silencio : Parser[Silencio] = char('_').map(_ => Silencio(Blanca)) <|> char('-').map(_ => Silencio(Negra)) <|> char('~').map(_ => Silencio(Corchea))
 
-  val silencio : Parser[Musica.Figura] = char('_').map(_ => Musica.Blanca) <|> char('-').map(_ => Musica.Negra) <|> char('~').map(_ => Musica.Corchea)
-
-  val nombreNota = char('A') <|> char('B') <|> char('C') <|> char('D') <|> char('E') <|> char('F') <|> char('G')
+  val nombreNota : Parser[Nota]  = char('A').map(_=>A) <|> char('B').map(_=>A) <|> char('C').map(_=>B) <|> char('D').map(_=>C) <|> char('E').map(_=>D) <|> char('F').map(_=>E) <|> char('G').map(_=>F)
   val modificador = char('#') <|> char('b')
 
-  val nota = nombreNota <> modificador.opt
+  val nota = (nombreNota <> modificador.opt).map((nota,modificador) => modificador match {
+    case Some('#') => nota.sostenido
+    case Some('b') => nota.bemol
+    case _ => nota
+  })
 
-  val tono = digit <> nota
+  val tono = (digit <> nota).map((octava,nota) => Tono(octava.toInt,nota))
 
-  val figura = string("1/1") <|> string("1/2") <|> string("1/4") <|> string("1/8") <|> string("1/16")
+  val figura = string("1/1").map(_=>Redonda) <|> string("1/2").map(_=>Blanca) <|> string("1/4").map(_=>Negra) <|> string("1/8").map(_=>Corchea) <|> string("1/16").map(_=>SemiCorchea)
 
-  val sonido = tono <> figura
+  val sonido = (tono <> figura).map( (tono,figura) => Sonido(tono,figura) )
 
-  val acordeExplicito = tono.sepBy(char('+')) <> figura
+  val acordeExplicito = (tono.sepBy(char('+')) <> figura).map( (tonos,figura) => Acorde(tonos,figura) )
 
-  val acordeMenorOMayor = (tono <> (char('m') <|> char('M'))) <> figura
+  val acordeMenorOMayor = ((tono <> (char('m') <|> char('M'))) <> figura).map( ((tono,c),fig) => c match {
+    case 'm' => tono.nota.acordeMenor(tono.octava,fig)
+    case 'M' => tono.nota.acordeMayor(tono.octava,fig)
+  } )
 
   val acorde = acordeExplicito <|> acordeMenorOMayor
 
   val tocable = silencio <|> sonido <|> acorde
 
   val parserDeMelodia = tocable.sepBy(char(' '))
-
+*/
 }
