@@ -2,7 +2,7 @@ import Musica.Nota
 import com.sun.org.apache.xpath.internal.operations.Bool
 
 import scala.collection.mutable.ListBuffer
-import scala.util.{Failure, Success, Try}
+import scala.util.{Success, Try}
 
 object ParserCombinator {
 
@@ -111,53 +111,30 @@ object ParserCombinator {
 
     def +  = {
       Parser(
-        (input :String) => applyUntilNoRemaining(input).result.get match {
+        (input :String) => applyWhilePosible(input).result.get match {
           case (List(),_) => NewResult[List[T]](Try(throw new ParseError))
-          case _ => applyUntilNoRemaining(input)
+          case _ => applyWhilePosible(input)
         }
       )
     }
 
     def * = {
       Parser(
-        (input :String) => applyUntilNoRemaining(input)
+        (input :String) => applyWhilePosible(input)
       )
     }
 
-    def sepBy[U](otherParser: Parser[U]) = {
-      val newParser = (this <> otherParser).+
+    def sepBy[U](sepParser: Parser[U]) = {
       Parser(
-        (input :String) => newParser.parse(input).result match {
-          case Success((list,rem)) => NewResult[List[T]](Try((list.map( x => x._1 ),rem)))
-          case _ => NewResult(Try(throw new ParseError))
-        }
+        (input :String) => applyWithSeparator(input,List(),sepParser)
       )
     }
 
-    /*
-    def sepBy (separator :Char) = {
-      var esSeparador: Bool = false
-      do
-       var charBuffer: ListBuffer[Nota] = ListBuffer()
-       var nextChar = anyChar.parse(input).result.get
-      if !(anyChar.parse(input).result.get == separator) charBuffer ++= nextChar()
-      else esSeparador = true
-      while !esSeparador
-      Parser(
-        (input :String) => NewResult[U](Try(
-          parser(charBuffer.toString).result.get match {
-            case (result,remaining) => (constant,"")
-          }
-        ))input)
-      )
-      //Falta repeticion
-    }
-*/
     def const [U](constant :U) = {
       Parser(
       (input :String) => NewResult[U](Try(
           parser(input).result.get match {
-            case (_, _) => (constant,"")
+            case (_, rem) => (constant,rem)
           }
         ))
       )
@@ -167,31 +144,36 @@ object ParserCombinator {
       Parser(
       (input :String) => NewResult[U](Try(
           parser(input).result.get match {
-            case (result, _) => (maperFunc(result),"")
+            case (result, rem) => (maperFunc(result),rem)
           }
         ))
       )
     }
 
-    def applyUntilNoRemaining(input:String,resultList: List[T] = List()):NewResult[List[T]] = parser(input).result match {
+    def applyWithSeparator [U](input:String,resultList: List[T] = List(), separatorParser :Parser[U]):NewResult[List[T]] = parser(input).result match {
       case Success((result,"")) => NewResult(Try((resultList ++ List(result),"")))
-      case Success((result,remaining)) => applyUntilNoRemaining(remaining,resultList ++ List(result))
+      case Success((result,remaining)) => separatorParser.parser(remaining).result match {
+        case Success((_,rem)) => applyWithSeparator(rem,resultList ++ List(result),separatorParser)
+        case _ => NewResult(Try((resultList ++ List(result),remaining)))
+      }
+      case _ => NewResult(Try(throw new ParseError))
+    }
+
+    def applyWhilePosible(input:String,resultList: List[T] = List()):NewResult[List[T]] = parser(input).result match {
+      case Success((result,"")) => NewResult(Try((resultList ++ List(result),"")))
+      case Success((result,remaining)) => applyWhilePosible(remaining,resultList ++ List(result))
       case _ => NewResult(Try((resultList,input)))
       }
 
   }
 
-  val aob: Parser[Char] = char('a') <|> char('b')
-  val holaMundoConcat: Parser[(String, String)] = string("hola") <> string("mundo")
-  val holaMundoRightmost: Parser[String] = string("hola") ~> string("mundo")
-  val holaMundoLeftmost: Parser[String] = string("hola") <~ string("mundo")
+  def charListToInt(list :List[Char]) : Int ={
+   list.mkString.toInt
+  }
 
-  val talVezIn = string("in").opt
-  // precedencia parsea exitosamente las palabras "infija" y "fija"
-  val precedencia = talVezIn <> string("fija")
+  val integer = digit.+.map(charListToInt)
 
-  val kleenePositivaDeHola = string("hola").+
-  val kleeneDeC = char('C').*
+  val tel = integer.sepBy(char('-'))
 
 
   def parseSuccessfullChar(input: String): GenericResult[Char] = (input.head,input.tail)
@@ -226,6 +208,54 @@ object ParserCombinator {
       NewResult[String](Try(throw new ParseError))
   }
 
+  //For testing
 
+  val aob: Parser[Char] = char('a') <|> char('b')
+  val holaMundoConcat: Parser[(String, String)] = string("hola") <> string("mundo")
+  val holaMundoRightmost: Parser[String] = string("hola") ~> string("mundo")
+  val holaMundoLeftmost: Parser[String] = string("hola") <~ string("mundo")
+
+  val talVezIn: Parser[Option[String]] = string("in").opt
+  // precedencia parsea exitosamente las palabras "infija" y "fija"
+  val precedencia: Parser[(Option[String], String)] = talVezIn <> string("fija")
+
+  val kleenePositivaDeHola: Parser[List[String]] = string("hola").+
+  val kleeneDeC: Parser[List[Char]] = char('C').*
+
+  val sepByDigit: Parser[List[Char]] = digit.sepBy(char('-'))
+
+  val inicialesNombresConBarras: Parser[List[Char]] = letter.sepBy(char('/'))
+
+  val constDeHolaAOtraCosa: Parser[String] = string("hola").const("otraCosa")
+
+  val constDeHolaATrue: Parser[Boolean] = string("hola").const(true)
+
+  val mapDeHolaAOtraCosa: Parser[String] = string("hola").map { case "hola" => "otraCosa" }
+
+  //Caso practico
+
+
+  val silencio : Parser[Musica.Figura] = char('_').map(_ => Musica.Blanca) <|> char('-').map(_ => Musica.Negra) <|> char('~').map(_ => Musica.Corchea)
+
+  val nombreNota = char('A') <|> char('B') <|> char('C') <|> char('D') <|> char('E') <|> char('F') <|> char('G')
+  val modificador = char('#') <|> char('b')
+
+  val nota = nombreNota <> modificador.opt
+
+  val tono = digit <> nota
+
+  val figura = string("1/1") <|> string("1/2") <|> string("1/4") <|> string("1/8") <|> string("1/16")
+
+  val sonido = tono <> figura
+
+  val acordeExplicito = tono.sepBy(char('+')) <> figura
+
+  val acordeMenorOMayor = (tono <> (char('m') <|> char('M'))) <> figura
+
+  val acorde = acordeExplicito <|> acordeMenorOMayor
+
+  val tocable = silencio <|> sonido <|> acorde
+
+  val parserDeMelodia = tocable.sepBy(char(' '))
 
 }

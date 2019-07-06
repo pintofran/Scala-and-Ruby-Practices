@@ -273,33 +273,38 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
 
     }
 
-    /*"Separated-by sepBy" - {
-     val inicialesNombresConBarras = ParserCombinator.letter.sepBy(char('/'))
+    "const" - {
 
-      "Fails when separator parser fails" in {
+      "Fails when first parser fails" in {
         assertThrows[ParseError] {
-          ParserCombinator.inicialesNombresConBarras.parser("Juan-Perez").result.get
+          ParserCombinator.constDeHolaAOtraCosa.parse("holimundo").result.get
         }
       }
 
-      "Fails when container parser fails" in {
+      "Successful when first parser success and return const otraCosa" in {
+        assert(ParserCombinator.constDeHolaAOtraCosa.parse("holamundo").result.get == ("otraCosa","mundo"))
+      }
+
+      "Successful when first parser success and return const true" in {
+        assert(ParserCombinator.constDeHolaATrue.parse("holamundo").result.get == (true,"mundo"))
+      }
+    }
+
+    "map" - {
+      "Fails when first parser fails" in {
         assertThrows[ParseError] {
-          ParserCombinator.inicialesNombresConBarras.parser("Juan/1erez").result.get
+          ParserCombinator.mapDeHolaAOtraCosa.parse("holimundo").result.get
         }
       }
-
-      "Successful when both parsers success" in {
-        assert(ParserCombinator.inicialesNombresConBarras.parser("Juan/Perez").result.get == ([('J',"uan"), ('P',"erez") ], ""))
+      "Successful when first parser success and return const otraCosa" in {
+        assert(ParserCombinator.mapDeHolaAOtraCosa.parse("holamundo").result.get == ("otraCosa","mundo"))
       }
-
-      "Successful with one iterations" in {
-        assert(ParserCombinator.inicialesNombresConBarras.parser("Juan").result.get == ([('J',"uan")], ""))
+      "Successful when first parser success and return const true" in {
+        assert(ParserCombinator.constDeHolaATrue.parse("holamundo").result.get == (true,"mundo"))
       }
+    }
 
-      "Successful with multiple iterations" in {
-        assert(ParserCombinator.inicialesNombresConBarras.parser("Juan/Martin/Perez/Dias").result.get == ([('J',"uan"), ('M',"artin"), ('P',"erez"), ('D',"ias"), "")])
-      }
-    }*/
+
 
   }
 
@@ -338,6 +343,29 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
 
       "Parses hola lot of times" in {
         assert(ParserCombinator.kleenePositivaDeHola.parse("holaholaholaholachau").result.get == (List("hola","hola","hola","hola"),"chau"))
+      }
+    }
+
+    "SepBy" - {
+
+      "Fails parsing" in {
+        assertThrows[ParseError]{
+          ParserCombinator.sepByDigit.parse("noDigit").result.get
+        }
+      }
+
+      "Parses digits fails" in {
+        assertThrows[ParseError]{
+          ParserCombinator.sepByDigit.parse("1-2-a-4-5-6").result.get
+        }
+      }
+
+      "Parses digits" in {
+        assert(ParserCombinator.sepByDigit.parse("1-2-3-4-5-6").result.get == (List('1','2','3','4','5','6'),""))
+      }
+
+      "Parses cellphone" in {
+        assert(ParserCombinator.tel.parse("4773-8632").result.get == (List(4773,8632),""))
       }
     }
 
