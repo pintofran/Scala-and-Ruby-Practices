@@ -1,7 +1,6 @@
 object PlayAudio extends App {
-  val sariaSong = "F A B B F A B B F A B E D D B C B G E E D D E G E F A B B F A B B F A B E D D B C E B G G D E G E"
+  val fc = "4AM1/8 5C1/8 5C#1/8 5C#1/8 5D#1/8 5C1/8 4A#1/8 4G#1/2 - 4A#1/8 4A#1/8 5C1/4 5C#1/8 4A#1/4 4G#1/2 5G#1/4 5G#1/4 5D#1/2"
 
-//  Ahora convertir la partitura a la melodía y pasarle eso al AudioPlayer les toca hacerlo a ustedes.
-
-//  AudioPlayer.reproducirNotas(sariaSong)
+  val lista = ParserCombinator.parserDeMelodia.parse(fc).getResult()
+  AudioPlayer.reproducir(lista)
 }

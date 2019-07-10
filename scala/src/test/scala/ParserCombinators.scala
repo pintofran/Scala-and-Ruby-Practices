@@ -17,11 +17,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when parses the first char when fed with text" in {
-        assert(ParserCombinator.anyChar.parse("Some Test Text").result.get == ('S', "ome Test Text"))
+        assert(ParserCombinator.anyChar.parse("Some Test Text").result.get == GenericResult('S', "ome Test Text"))
       }
 
       "Successful when parses the first char when fed with only one char text" in {
-        assert(ParserCombinator.anyChar.parse("A").result.get == ('A', ""))
+        assert(ParserCombinator.anyChar.parse("A").result.get == GenericResult('A', ""))
       }
 
     }
@@ -40,7 +40,7 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when parses the expected character of the given text" in {
-        assert(ParserCombinator.char('S').parse("Some Test Text").result.get == ('S', "ome Test Text"))
+        assert(ParserCombinator.char('S').parse("Some Test Text").result.get == GenericResult('S', "ome Test Text"))
       }
 
     }
@@ -53,11 +53,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when parses as Unit the first char of the given text" in {
-        assert(ParserCombinator.void.parse("Some Test Text").result.get == ((), "ome Test Text"))
+        assert(ParserCombinator.void.parse("Some Test Text").result.get == GenericResult((), "ome Test Text"))
       }
 
       "Successful when parses as Unit the first char when fed with only one char text" in {
-        assert(ParserCombinator.void.parse("A").result.get == ((), ""))
+        assert(ParserCombinator.void.parse("A").result.get == GenericResult((), ""))
       }
 
     }
@@ -80,15 +80,15 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when parses the first char as letter of the given text" in {
-        assert(ParserCombinator.letter.parse("Some Test Text").result.get == ('S', "ome Test Text"))
+        assert(ParserCombinator.letter.parse("Some Test Text").result.get == GenericResult('S', "ome Test Text"))
       }
 
       "Successful when parses the first char when fed with only one letter char text" in {
-        assert(ParserCombinator.letter.parse("A").result.get == ('A', ""))
+        assert(ParserCombinator.letter.parse("A").result.get == GenericResult('A', ""))
       }
 
       "Successful when parses the first char as letter with mixed fed text" in {
-        assert(ParserCombinator.letter.parse("S0M3 73$7 73X7").result.get == ('S', "0M3 73$7 73X7"))
+        assert(ParserCombinator.letter.parse("S0M3 73$7 73X7").result.get == GenericResult('S', "0M3 73$7 73X7"))
       }
 
     }
@@ -110,15 +110,15 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when parses the first char as digit of the given text" in {
-        assert(ParserCombinator.digit.parse("1234").result.get == ('1', "234"))
+        assert(ParserCombinator.digit.parse("1234").result.get == GenericResult('1', "234"))
       }
 
       "Successful when parses the first char when fed with only one digit char text" in {
-        assert(ParserCombinator.digit.parse("1").result.get == ('1', ""))
+        assert(ParserCombinator.digit.parse("1").result.get == GenericResult('1', ""))
       }
 
       "Successful when parses the first char as digit with mixed fed text" in {
-        assert(ParserCombinator.digit.parse("5ome Test Text").result.get == ('5', "ome Test Text"))
+        assert(ParserCombinator.digit.parse("5ome Test Text").result.get == GenericResult('5', "ome Test Text"))
       }
 
     }
@@ -135,27 +135,27 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when parses the first char as digit of the given text" in {
-        assert(ParserCombinator.alphaNum.parse("1234").result.get == ('1', "234"))
+        assert(ParserCombinator.alphaNum.parse("1234").result.get == GenericResult('1', "234"))
       }
 
       "Successful when parses the first char when fed with only one digit char text" in {
-        assert(ParserCombinator.alphaNum.parse("1").result.get == ('1', ""))
+        assert(ParserCombinator.alphaNum.parse("1").result.get == GenericResult('1', ""))
       }
 
       "Successful when parses the first char as digit with mixed fed text" in {
-        assert(ParserCombinator.alphaNum.parse("5ome Test Text").result.get == ('5', "ome Test Text"))
+        assert(ParserCombinator.alphaNum.parse("5ome Test Text").result.get == GenericResult('5', "ome Test Text"))
       }
 
       "Successful when parses the first char as letter of the given text" in {
-        assert(ParserCombinator.alphaNum.parse("Some Test Text").result.get == ('S', "ome Test Text"))
+        assert(ParserCombinator.alphaNum.parse("Some Test Text").result.get == GenericResult('S', "ome Test Text"))
       }
 
       "Successful when parses the first char when fed with only one letter char text" in {
-        assert(ParserCombinator.alphaNum.parse("A").result.get == ('A', ""))
+        assert(ParserCombinator.alphaNum.parse("A").result.get == GenericResult('A', ""))
       }
 
       "Successful when parses the first char as letter with mixed fed text" in {
-        assert(ParserCombinator.alphaNum.parse("S0M3 73$7 73X7").result.get == ('S', "0M3 73$7 73X7"))
+        assert(ParserCombinator.alphaNum.parse("S0M3 73$7 73X7").result.get == GenericResult('S', "0M3 73$7 73X7"))
       }
 
     }
@@ -173,11 +173,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when parses the expected string of a exact given text" in {
-        assert(ParserCombinator.string("Some").parse("Some Test Text").result.get == ("Some", " Test Text"))
+        assert(ParserCombinator.string("Some").parse("Some Test Text").result.get == GenericResult("Some", " Test Text"))
       }
 
       "Successful when parses the expected string of the given text" in {
-        assert(ParserCombinator.string("Some Test Text").parse("Some Test Text").result.get == ("Some Test Text", ""))
+        assert(ParserCombinator.string("Some Test Text").parse("Some Test Text").result.get == GenericResult("Some Test Text", ""))
       }
 
     }
@@ -194,11 +194,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when first parser is successful" in {
-        assert(ParserCombinator.aob.parse("arbol").result.get == ('a', "rbol"))
+        assert(ParserCombinator.aob.parse("arbol").result.get == GenericResult('a', "rbol"))
       }
 
       "Successful when first parser fails but second parser is successful" in {
-        assert(ParserCombinator.aob.parse("bort").result.get == ('b', "ort"))
+        assert(ParserCombinator.aob.parse("bort").result.get == GenericResult('b', "ort"))
       }
     }
 
@@ -217,11 +217,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when both parsers success" in {
-        assert(ParserCombinator.holaMundoConcat.parse("holamundo").result.get == (("hola","mundo"),""))
+        assert(ParserCombinator.holaMundoConcat.parse("holamundo").result.get == GenericResult(("hola","mundo"),""))
       }
 
       "Successful when both parsers success with remaining text" in {
-        assert(ParserCombinator.holaMundoConcat.parse("holamundo!").result.get == (("hola","mundo"),"!"))
+        assert(ParserCombinator.holaMundoConcat.parse("holamundo!").result.get == GenericResult(("hola","mundo"),"!"))
       }
 
     }
@@ -240,11 +240,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when both parsers success" in {
-        assert(ParserCombinator.holaMundoRightmost.parse("holamundo").result.get == ("mundo",""))
+        assert(ParserCombinator.holaMundoRightmost.parse("holamundo").result.get == GenericResult("mundo",""))
       }
 
       "Successful when both parsers success with remaining text" in {
-        assert(ParserCombinator.holaMundoRightmost.parse("holamundo!").result.get == ("mundo","!"))
+        assert(ParserCombinator.holaMundoRightmost.parse("holamundo!").result.get == GenericResult("mundo","!"))
       }
 
     }
@@ -264,11 +264,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when both parsers success" in {
-        assert(ParserCombinator.holaMundoLeftmost.parse("holamundo").result.get == ("hola",""))
+        assert(ParserCombinator.holaMundoLeftmost.parse("holamundo").result.get == GenericResult("hola",""))
       }
 
       "Successful when both parsers success with remaining text" in {
-        assert(ParserCombinator.holaMundoLeftmost.parse("holamundo!").result.get == ("hola","!"))
+        assert(ParserCombinator.holaMundoLeftmost.parse("holamundo!").result.get == GenericResult("hola","!"))
       }
 
     }
@@ -282,11 +282,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Successful when first parser success and return const otraCosa" in {
-        assert(ParserCombinator.constDeHolaAOtraCosa.parse("holamundo").result.get == ("otraCosa","mundo"))
+        assert(ParserCombinator.constDeHolaAOtraCosa.parse("holamundo").result.get == GenericResult("otraCosa","mundo"))
       }
 
       "Successful when first parser success and return const true" in {
-        assert(ParserCombinator.constDeHolaATrue.parse("holamundo").result.get == (true,"mundo"))
+        assert(ParserCombinator.constDeHolaATrue.parse("holamundo").result.get == GenericResult(true,"mundo"))
       }
     }
 
@@ -297,10 +297,10 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
         }
       }
       "Successful when first parser success and return const otraCosa" in {
-        assert(ParserCombinator.mapDeHolaAOtraCosa.parse("holamundo").result.get == ("otraCosa","mundo"))
+        assert(ParserCombinator.mapDeHolaAOtraCosa.parse("holamundo").result.get == GenericResult("otraCosa","mundo"))
       }
       "Successful when first parser success and return const true" in {
-        assert(ParserCombinator.constDeHolaATrue.parse("holamundo").result.get == (true,"mundo"))
+        assert(ParserCombinator.constDeHolaATrue.parse("holamundo").result.get == GenericResult(true,"mundo"))
       }
     }
 
@@ -313,11 +313,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       "Operación opt" - {
 
         "Parses infija" in {
-          assert(ParserCombinator.precedencia.parse("infija").result.get == ((Some("in"),"fija"),""))
+          assert(ParserCombinator.precedencia.parse("infija").result.get == GenericResult((Some("in"),"fija"),""))
         }
 
         "Parses fija" in {
-          assert(ParserCombinator.precedencia.parse("fija").result.get == ((None,"fija"),""))
+          assert(ParserCombinator.precedencia.parse("fija").result.get == GenericResult((None,"fija"),""))
         }
 
       }
@@ -325,11 +325,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
     "Kleene * operator" - {
 
       "No result parsing no C chars" in {
-          assert(ParserCombinator.kleeneDeC.parse("hola").result.get == (List(),"hola"))
+          assert(ParserCombinator.kleeneDeC.parse("hola").result.get == GenericResult(List(),"hola"))
       }
 
       "Parses C lot of times" in {
-        assert(ParserCombinator.kleeneDeC.parse("CCChola").result.get == (List('C','C','C'),"hola"))
+        assert(ParserCombinator.kleeneDeC.parse("CCChola").result.get == GenericResult(List('C','C','C'),"hola"))
       }
     }
 
@@ -342,7 +342,7 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Parses hola lot of times" in {
-        assert(ParserCombinator.kleenePositivaDeHola.parse("holaholaholaholachau").result.get == (List("hola","hola","hola","hola"),"chau"))
+        assert(ParserCombinator.kleenePositivaDeHola.parse("holaholaholaholachau").result.get == GenericResult(List("hola","hola","hola","hola"),"chau"))
       }
     }
 
@@ -361,11 +361,11 @@ class ParserCombinatorTest extends FreeSpec with Matchers {
       }
 
       "Parses digits" in {
-        assert(ParserCombinator.sepByDigit.parse("1-2-3-4-5-6").result.get == (List('1','2','3','4','5','6'),""))
+        assert(ParserCombinator.sepByDigit.parse("1-2-3-4-5-6").result.get == GenericResult(List('1','2','3','4','5','6'),""))
       }
 
       "Parses cellphone" in {
-        assert(ParserCombinator.tel.parse("4773-8632").result.get == (List(4773,8632),""))
+        assert(ParserCombinator.tel.parse("4773-8632").result.get == GenericResult(List(4773,8632),""))
       }
     }
 

@@ -1,17 +1,13 @@
-import Musica.Nota
-import com.sun.org.apache.xpath.internal.operations.Bool
-
-import scala.collection.mutable.ListBuffer
 import scala.util.{Success, Try}
 
 object ParserCombinator {
 
-  type GenericResult[T] = (T,String)
+  case class GenericResult[+T] (result :T, remaining :String)
 
-  case class NewResult[T] (result :Try[GenericResult[T]]){
+  case class NewResult[+T] (result :Try[GenericResult[T]]){
 
-    def getResult(): T = result.get._1
-    def getRemaining(): String = result.get._2
+    def getResult(): T = result.get.result
+    def getRemaining(): String = result.get.remaining
 
   }
 
@@ -25,7 +21,7 @@ object ParserCombinator {
   type StringParser = String => StringResult
   type VoidParser = String => UnitResult
 
-  type SpecificParser[T] = String => NewResult[T]
+  type SpecificParser[+T] = String => NewResult[T]
 
 
   val anyChar = Parser(anyCharFunc)
@@ -41,7 +37,7 @@ object ParserCombinator {
 
   class ParseError extends RuntimeException
 
-  case class Parser[T](parser :SpecificParser[T]){
+  case class Parser[+T](parser :SpecificParser[T]){
 
     def parse(input :String) :NewResult[T] ={
       if (input.isEmpty)
@@ -50,11 +46,12 @@ object ParserCombinator {
         parser(input)
     }
 
-    def <|>(otherParser :Parser[T]) = {
+    def <|>[U >: T](otherParser :Parser[U]) :Parser[U] = {
       Parser(
         (input :String) => NewResult(parser(input).result.orElse(otherParser.parser(input).result))
       )
     }
+
 
     def <>[U](otherParser: Parser[U]): Parser[(T, U)] =
     {
@@ -62,28 +59,28 @@ object ParserCombinator {
         (input :String) => NewResult[(T,U)](Try(
 
           parser(input).result.get match {
-            case (result,remaining) => ((result,otherParser.parser(remaining).getResult()),otherParser.parser(remaining).getRemaining())
+            case GenericResult(result,remaining) => GenericResult((result,otherParser.parser(remaining).getResult()),otherParser.parser(remaining).getRemaining())
           }
 
         ))
       )
     }
 
-    def ~> (otherParser :Parser[T]) = {
+    def ~> [U >: T](otherParser :Parser[U]) :Parser[U] = {
       Parser(
-        (input :String) => NewResult[T](Try(
+        (input :String) => NewResult[U](Try(
           parser(input).result.get match {
-            case (_,remaining) => (otherParser.parser(remaining).getResult(),otherParser.parser(remaining).getRemaining())
+            case GenericResult(_,remaining) => GenericResult(otherParser.parser(remaining).getResult(),otherParser.parser(remaining).getRemaining())
           }
         ))
       )
     }
 
-    def <~ (otherParser :Parser[T]) = {
+    def <~ [U >: T](otherParser :Parser[U]) = {
       Parser(
-        (input :String) => NewResult[T](Try(
+        (input :String) => NewResult[U](Try(
           parser(input).result.get match {
-            case (result,remaining) => (result,otherParser.parser(remaining).getRemaining())
+            case GenericResult(result,remaining) => GenericResult(result,otherParser.parser(remaining).getRemaining())
           }
         ))
       )
@@ -93,7 +90,7 @@ object ParserCombinator {
       Parser(
         (input :String) => NewResult[T](Try(
           parser(input).result.get match {
-          case (result,remaining) if condition(result) => (result,remaining)
+          case GenericResult(result,remaining) if condition(result) => GenericResult(result,remaining)
           case _ => throw new ParseError
         }
       )))
@@ -103,8 +100,8 @@ object ParserCombinator {
       Parser(
         (input :String) => NewResult[Option[T]](Try(
           parser(input).result match {
-            case Success((result,remaining)) => (Some(result),remaining)
-            case _ => (None,input)
+            case Success(GenericResult(result,remaining)) => GenericResult(Some(result),remaining)
+            case _ => GenericResult(None,input)
           }
         )))
     }
@@ -112,7 +109,7 @@ object ParserCombinator {
     def +  = {
       Parser(
         (input :String) => applyWhilePosible(input).result.get match {
-          case (List(),_) => NewResult[List[T]](Try(throw new ParseError))
+          case GenericResult(List(),_) => NewResult[List[T]](Try(throw new ParseError))
           case _ => applyWhilePosible(input)
         }
       )
@@ -134,7 +131,7 @@ object ParserCombinator {
       Parser(
       (input :String) => NewResult[U](Try(
           parser(input).result.get match {
-            case (_, rem) => (constant,rem)
+            case GenericResult(_, rem) => GenericResult(constant,rem)
           }
         ))
       )
@@ -144,25 +141,25 @@ object ParserCombinator {
       Parser(
       (input :String) => NewResult[U](Try(
           parser(input).result.get match {
-            case (result, rem) => (maperFunc(result),rem)
+            case GenericResult(result, rem) => GenericResult(maperFunc(result),rem)
           }
         ))
       )
     }
 
-    def applyWithSeparator [U](input:String,resultList: List[T] = List(), separatorParser :Parser[U]):NewResult[List[T]] = parser(input).result match {
-      case Success((result,"")) => NewResult(Try((resultList ++ List(result),"")))
-      case Success((result,remaining)) => separatorParser.parser(remaining).result match {
-        case Success((_,rem)) => applyWithSeparator(rem,resultList ++ List(result),separatorParser)
-        case _ => NewResult(Try((resultList ++ List(result),remaining)))
+    def applyWithSeparator [U,V >: T](input:String,resultList: List[V] = List(), separatorParser :Parser[U]):NewResult[List[V]] = parser(input).result match {
+      case Success(GenericResult(result,"")) => NewResult(Try(GenericResult(resultList ++ List(result),"")))
+      case Success(GenericResult(result,remaining)) => separatorParser.parser(remaining).result match {
+        case Success(GenericResult(_,rem)) => applyWithSeparator(rem,resultList ++ List(result),separatorParser)
+        case _ => NewResult(Try(GenericResult(resultList ++ List(result),remaining)))
       }
       case _ => NewResult(Try(throw new ParseError))
     }
 
-    def applyWhilePosible(input:String,resultList: List[T] = List()):NewResult[List[T]] = parser(input).result match {
-      case Success((result,"")) => NewResult(Try((resultList ++ List(result),"")))
-      case Success((result,remaining)) => applyWhilePosible(remaining,resultList ++ List(result))
-      case _ => NewResult(Try((resultList,input)))
+    def applyWhilePosible[U >: T](input:String,resultList: List[U] = List()):NewResult[List[U]] = parser(input).result match {
+      case Success(GenericResult(result,"")) => NewResult(Try(GenericResult(resultList ++ List(result),"")))
+      case Success(GenericResult(result,remaining)) => applyWhilePosible(remaining,resultList ++ List(result))
+      case _ => NewResult(Try(GenericResult(resultList,input)))
       }
 
   }
@@ -176,7 +173,7 @@ object ParserCombinator {
   val tel = integer.sepBy(char('-'))
 
 
-  def parseSuccessfullChar(input: String): GenericResult[Char] = (input.head,input.tail)
+  def parseSuccessfullChar(input: String): GenericResult[Char] = GenericResult(input.head,input.tail)
 
   def anyCharFunc(input: String): CharResult = NewResult[Char](Try(parseSuccessfullChar(input)))
 
@@ -190,7 +187,7 @@ object ParserCombinator {
   }
 
   def voidFunc(input: String): UnitResult = NewResult[Unit](Try(
-    (Unit,input.tail)
+    GenericResult(Unit,input.tail)
   ))
 
   def letterFunc(input: String): CharResult = isExpectedChar(input.head.isLetter, input)
@@ -202,7 +199,7 @@ object ParserCombinator {
   def stringFunc(expectedString: String, input: String): StringResult = {
     if (expectedString == input.take(expectedString.length))
       NewResult[String](Try(
-        (expectedString,input.drop(expectedString.length))
+        GenericResult(expectedString,input.drop(expectedString.length))
       ))
     else
       NewResult[String](Try(throw new ParseError))
@@ -235,35 +232,37 @@ object ParserCombinator {
   //Caso practico
 
   import Musica._
-/*
+
   val silencio : Parser[Silencio] = char('_').map(_ => Silencio(Blanca)) <|> char('-').map(_ => Silencio(Negra)) <|> char('~').map(_ => Silencio(Corchea))
 
   val nombreNota : Parser[Nota]  = char('A').map(_=>A) <|> char('B').map(_=>A) <|> char('C').map(_=>B) <|> char('D').map(_=>C) <|> char('E').map(_=>D) <|> char('F').map(_=>E) <|> char('G').map(_=>F)
-  val modificador = char('#') <|> char('b')
+  val modificador : Parser[Char] = char('#') <|> char('b')
 
-  val nota = (nombreNota <> modificador.opt).map((nota,modificador) => modificador match {
-    case Some('#') => nota.sostenido
-    case Some('b') => nota.bemol
-    case _ => nota
-  })
+  val nota : Parser[Nota] = (nombreNota <> modificador.opt).map {
+    case (not, Some('#')) => not.sostenido
+    case (not, Some('b')) => not.bemol
+    case (not, _) => not
+  }
 
-  val tono = (digit <> nota).map((octava,nota) => Tono(octava.toInt,nota))
+  val tono :Parser[Tono] = (digit <> nota).map {
+    case (octava, not) => Tono(octava.toInt, not)
+  }
 
   val figura = string("1/1").map(_=>Redonda) <|> string("1/2").map(_=>Blanca) <|> string("1/4").map(_=>Negra) <|> string("1/8").map(_=>Corchea) <|> string("1/16").map(_=>SemiCorchea)
 
-  val sonido = (tono <> figura).map( (tono,figura) => Sonido(tono,figura) )
+  val sonido = (tono <> figura).map{case (ton,fig) => Sonido(ton,fig) }
 
-  val acordeExplicito = (tono.sepBy(char('+')) <> figura).map( (tonos,figura) => Acorde(tonos,figura) )
+  val acordeExplicito = (tono.sepBy(char('+')) <> figura).map{ case (ton,fig) => Acorde(ton,fig) }
 
-  val acordeMenorOMayor = ((tono <> (char('m') <|> char('M'))) <> figura).map( ((tono,c),fig) => c match {
-    case 'm' => tono.nota.acordeMenor(tono.octava,fig)
-    case 'M' => tono.nota.acordeMayor(tono.octava,fig)
-  } )
+  val acordeMenorOMayor = ((tono <> (char('m') <|> char('M'))) <> figura).map {
+    case ((tono, 'm'), fig) => tono.nota.acordeMenor(tono.octava, fig)
+    case ((tono, 'M'), fig) => tono.nota.acordeMayor(tono.octava, fig)
+  }
 
   val acorde = acordeExplicito <|> acordeMenorOMayor
 
   val tocable = silencio <|> sonido <|> acorde
 
   val parserDeMelodia = tocable.sepBy(char(' '))
-*/
+
 }
